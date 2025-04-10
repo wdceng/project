@@ -1,3 +1,14 @@
-python_version >= "3.8"
+# python_version >= "3.13.3"
+cs50==9.4.0
 Flask==3.1.0
+Flask-Session==0.8.0
+# functools # The functools module is part of Python’s standard library
+# sqlite3==3.43.2 # The sqlite3 module is part of Python’s standard library
 gunicorn==23.0.0
+
+# From CS50 finance app:
+# cs50
+# Flask
+# Flask-Session
+# requests
+# pytz # Cannot find in finance app, probably not used.
