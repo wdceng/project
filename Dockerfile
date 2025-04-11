@@ -38,17 +38,30 @@ RUN --mount=type=cache,target=/root/.cache/pip \
     --mount=type=bind,source=requirements.txt,target=requirements.txt \
     python -m pip install -r requirements.txt
 
-# Switch to the non-privileged user to run the application.
-USER appuser
-
 # Copy the source code into the container.
 COPY . .
+
+# Set safe read permissions for non-root user (optional but safe)
+RUN chmod -R 755 /app
+
+# Set safe writte permissions for non-root user (optional but safe)
+# RUN chmod -R 777 /app/flask_session
+# Safer Alternative (if you want to tighten it up)
+RUN chown -R appuser /app/flask_session
+
+
+# Switch to the non-privileged user to run the application.
+USER appuser
 
 # Expose the port that the application listens on.
 EXPOSE 5050
 
-# Run the application.
-CMD ["gunicorn", "--bind", "0.0.0.0:5050", "app.app:app"]
+# Run the application with gunicorn.
+CMD ["gunicorn", "--bind", "0.0.0.0:5050", "app:app", "--timeout 120"]
+
+# Run the application with flask run.
+# CMD ["flask", "run", "--host=0.0.0.0", "--port=5050"]
+
 
 # Minimum Dockerfile requirements, above created by CLI: docker init
 # FROM python:3.13.3-slim
@@ -59,5 +72,5 @@ CMD ["gunicorn", "--bind", "0.0.0.0:5050", "app.app:app"]
 # RUN pip install --no-cache-dir -r requirements.txt
 # 
 # COPY . .
-
-# CMD ["gunicorn", "--bind", "0.0.0.0:5050", "app.app:app"]
+#
+# CMD ["gunicorn", "--bind", "0.0.0.0:5050", "app:app"]
