@@ -1,46 +1,89 @@
-/* Base Theme Variables */
-:root {
-  --bg-color: #f4f4f4;
-  --text-color: #1a1a1a;
-  --accent-color: #d2691e; /* Welding orange */
-  --border-color: #ccc;
-  --input-bg: #fff;
-  --input-text: #000;
-  --input-border: #999;
-  --code-bg: #e0e0e0;
-  --table-stripe: #f0f0f0;
-}
-
-body[data-theme="dark"] {
-  --bg-color: #121212;
-  --text-color: #e0e0e0;
-  --accent-color: #ff8c00;
-  --border-color: #444;
-  --input-bg: #1f1f1f;
-  --input-text: #fff;
-  --input-border: #666;
-  --code-bg: #1e1e1e;
-  --table-stripe: #1a1a1a;
-}
-
-* {
+/* === GLOBAL RESET & BASE STYLES === */
+/* Apply to all elements and their pseudo-elements */
+*,
+*::before,
+*::after {
+  /* Use border-box to make sizing predictable */
   box-sizing: border-box;
+
+  /* Remove default spacing */
+  margin: 0;
+  padding: 0;
+
+  /* Smooth transitions on all properties (be cautious!) */
   transition: all 0.2s ease-in-out;
 }
 
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  font-family: "Segoe UI", sans-serif;
-  line-height: 1.6;
-  padding: 1rem;
+/* Optional: Respect user's motion preferences in device settings */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+}
 
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start; /* align to top */
-  align-items: center; /* center horizontally */
-  min-height: 100vh; /* full screen height */
-  text-align: center; /* optional */
+/* Html properties are for foundational stuff */
+html {
+  font-size: 16px; /* Sets rem baseline */
+  direction: ltr; /* Good for clarity, especially if supporting RTL later */
+  scroll-behavior: smooth; /* UX-friendly scrolling */
+  -webkit-font-smoothing: antialiased; /* Mac/Safari font rendering */
+  -moz-osx-font-smoothing: grayscale; /* Firefox/Mac font rendering */
+  text-size-adjust: 100%; /* Prevent font auto-scaling */
+  -webkit-text-size-adjust: 100%; /* Prevent font size adjustments in Safari, Chrome, and modern Opera */
+  -ms-text-size-adjust: 100%; /* Prevent font size adjustments in Internet Explorer and legacy Edge */
+  -moz-text-size-adjust: 100%; /* Prevent font size adjustments in Firefox */
+}
+
+/* === Base Theme Variables (Light Theme) === */
+/* Define default design tokens for layout and UI styling */
+:root {
+  --bg-color: #f4f4f4; /* Page background color */
+  --text-color: #1a1a1a; /* Default text color */
+  --accent-color: #d2691e; /* Primary accent color (Welding orange) */
+  --border-color: #ccc; /* Border color for elements like tables, cards */
+  --input-bg: #fff; /* Background color for form inputs */
+  --input-text: #000; /* Text color inside form inputs */
+  --input-border: #999; /* Border color for form inputs */
+  --code-bg: #e0e0e0; /* Background for code blocks */
+  --table-stripe: #f0f0f0; /* Alternate row background for tables */
+}
+
+/* === Dark Theme Variables === */
+/* Overrides applied when [data-theme="dark"] is set on <body> */
+body[data-theme="dark"] {
+  --bg-color: #121212; /* Dark background for the page */
+  --text-color: #e0e0e0; /* Light text for contrast */
+  --accent-color: #ff8c00; /* Brighter orange accent for dark mode */
+  --border-color: #444; /* Darker borders for subtle contrast */
+  --input-bg: #1f1f1f; /* Dark background for form inputs */
+  --input-text: #fff; /* Light input text for readability */
+  --input-border: #666; /* Input borders slightly lighter than bg */
+  --code-bg: #1e1e1e; /* Code block background in dark mode */
+  --table-stripe: #1a1a1a; /* Subtle row striping for tables */
+}
+
+/* Html properties are for foundational stuff, 
+   body properties are the right place for: 
+   - Visual styling: background-color, color
+   - Typography: font-family, line-height
+   - Layout spacing: padding, margin, display: flex, etc.*/
+body {
+  background-color: var(
+    --bg-color
+  ); /* Set background color from theme variable */
+  color: var(--text-color); /* Set text color from theme variable */
+  font-family: "Segoe UI", sans-serif; /* Use a clean, modern sans-serif font */
+  line-height: 1.6; /* Improve readability with comfortable line spacing */
+  padding: 1rem; /* Add space around the body content */
+
+  display: flex; /* Use Flexbox for layout */
+  flex-direction: column; /* Stack children vertically */
+  justify-content: flex-start; /* Align items to the top of the page */
+  align-items: center; /* Center items horizontally */
+  min-height: 100vh; /* Ensure body fills the full height of the viewport */
+  text-align: center; /* Center-align text (optional, based on layout needs) */
 }
 
 /* Headings */
