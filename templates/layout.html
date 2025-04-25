@@ -42,51 +42,44 @@
   <!-- To start with "light" or "dark" theme -->
   <body data-theme="light">
     <header>
-      <nav>
-        <ul>
-          <li>
-            <a href="/" id="logo">WeldDB</a>
-          </li>
-        </ul>
-        {% if session["user_id"] %}
-        <ul>
-          <li><a href="/quote">Quote</a></li>
-          <li><a href="/buy">Buy</a></li>
-          <li><a href="/sell">Sell</a></li>
-          <li><a href="/history">History</a></li>
-          <li><a href="/add">Add Cash</a></li>
-        </ul>
-        <div></div>
-        <ul>
-          <li><a href="/logout">Log Out</a></li>
-        </ul>
-        {% else %}
-        <div></div>
-        <ul>
-          <li><a href="/register">Register</a></li>
-          <li><a href="/login">Log In</a></li>
-        </ul>
-        {% endif %}
-        <ul>
-          <li>
-            <button onclick="toggleTheme()" id="toggleTheme">Dark</button>
-          </li>
-        </ul>
-      </nav>
-      {% if get_flashed_messages() %}
-      <div role="alert">{{ get_flashed_messages() | join(" ") }}</div>
-      {% endif %}
+      <section>
+        <nav>
+          <h1>
+            <a href="#/">WeldDB</a>
+          </h1>
+          {% if session["user_id"] %}
+          <ul>
+            <li><a href="/quote">Quote</a></li>
+            <li><a href="/buy">Buy</a></li>
+            <li><a href="/sell">Sell</a></li>
+            <li><a href="/history">History</a></li>
+            <li><a href="/add">Add Cash</a></li>
+          </ul>
+          <div><!-- Allow flex children to split left/right alignment --></div>
+          <ul>
+            <li><a href="/logout">Log Out</a></li>
+          </ul>
+          {% else %}
+          <div></div>
+          <ul>
+            <li><a href="/register">Register</a></li>
+            <li><a href="/login">Log In</a></li>
+          </ul>
+          {% endif %}
+          <ul>
+            <li>
+              <button onclick="toggleTheme()" id="toggleTheme">Dark</button>
+            </li>
+          </ul>
+        </nav>
+        {% if get_flashed_messages() %} {% endif %}
+      </section>
     </header>
+    <div role="alert">{{ get_flashed_messages() | join(" ") }}</div>
     <main>{% block main %}{% endblock %}</main>
     <footer>
-      <div>
-        <p>
-          &copy;
-          <script>
-            document.write(new Date().getFullYear());
-          </script>
-          Welding Log Book Database
-        </p>
+      <section>
+        <h4>&copy; <span id="footerYear"></span> Welding Book/Log Database</h4>
         <!-- https://validator.w3.org/ -->
         <form
           action="https://validator.w3.org/check"
@@ -102,7 +95,7 @@
             type="image"
           />
         </form>
-      </div>
+      </section>
     </footer>
   </body>
 </html>

@@ -44,56 +44,54 @@
   <body data-theme="light">
     <header>
       <nav>
-        <ul>
-          <li>
-            <a href="#/" id="logo">WeldDB</a>
-          </li>
-        </ul>
-        <ul>
-          <li><a href="#/quote">Link 1</a></li>
-          <li><a href="#/buy">Link 2</a></li>
-          <li><a href="#/sell">Link 3</a></li>
-          <li><a href="#/history">Link 4</a></li>
-          <li><a href="#/add">Link 5</a></li>
-        </ul>
-        <div></div>
-        <ul>
-          <li><a href="#/register">Register</a></li>
-          <li><a href="#/login">Log In</a></li>
-        </ul>
-        <ul>
-          <li>
-            <button onclick="toggleTheme()" id="toggleTheme">Dark</button>
-          </li>
-        </ul>
+        <section>
+          <h2>
+            <a href="#/">WeldDB</a>
+          </h2>
+          <ul>
+            <li><a href="#/quote">Link 1</a></li>
+            <li><a href="#/buy">Link 2</a></li>
+            <li><a href="#/sell">Link 3</a></li>
+            <li><a href="#/history">Link 4</a></li>
+            <li><a href="#/add">Link 5</a></li>
+          </ul>
+          <div><!-- Allow flex children to split left/right alignment --></div>
+          <ul>
+            <li><a href="#/register">Register</a></li>
+            <li><a href="#/login">Log In</a></li>
+          </ul>
+          <ul>
+            <li>
+              <button onclick="toggleTheme()" id="toggleTheme">Dark</button>
+            </li>
+          </ul>
+        </section>
       </nav>
     </header>
     <main>
-      <form action="/login" method="post">
-        <div>
-          <input
-            type="text"
-            autocomplete="off"
-            autofocus=""
-            name="username"
-            placeholder="Username"
-          />
-        </div>
-        <div>
-          <input type="password" name="password" placeholder="Password" />
-        </div>
-        <button type="submit">Log In</button>
-      </form>
+      <!-- <section> -->
+      <section class="center">
+        <h3>Log In</h3>
+        <form action="/login" method="post">
+          <div>
+            <input
+              type="text"
+              autocomplete="off"
+              autofocus
+              name="username"
+              placeholder="Username"
+            />
+          </div>
+          <div>
+            <input type="password" name="password" placeholder="Password" />
+          </div>
+          <button onclick="event.preventDefault()">Log In</button>
+        </form>
+      </section>
     </main>
     <footer>
-      <div>
-        <p>
-          &copy;
-          <script>
-            document.write(new Date().getFullYear());
-          </script>
-          Welding Log Book Database
-        </p>
+      <section>
+        <h4>&copy; <span id="footerYear"></span> Welding Book/Log Database</h4>
         <!-- https://validator.w3.org/ -->
         <form
           action="https://validator.w3.org/check"
@@ -109,7 +107,7 @@
             type="image"
           />
         </form>
-      </div>
+      </section>
     </footer>
   </body>
 </html>
