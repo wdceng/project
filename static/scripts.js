@@ -32,5 +32,5 @@ function toggleTheme() {
   buttonText.innerText = nextTheme === 'light' ? 'Dark' : 'Light';
 }
 
-// // Set the text inside the element with id "footerYear" to the current year
+// Set the text inside the element with id "footerYear" to the current year
 document.getElementById('footerYear').textContent = new Date().getFullYear();

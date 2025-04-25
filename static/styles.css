@@ -104,8 +104,7 @@ main,
 main > section,
 form,
 footer,
-footer > section,
-footer h4 {
+footer > section {
   /* === Flexbox === */
   display: flex; /* Flex layout for centering */
   justify-content: center; /* Center children horizontally */
