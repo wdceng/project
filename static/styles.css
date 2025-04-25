@@ -1,30 +1,48 @@
+/*
+SPACING SYSTEM (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+
+
+FONT SIZE SYSTEM (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+*/
+
+/* ---------------------------------- */
 /* === GLOBAL RESET & BASE STYLES === */
-/* Apply to all elements and their pseudo-elements */
+/* ---------------------------------- */
+
 *,
 *::before,
 *::after {
-  /* Use border-box to make sizing predictable */
-  box-sizing: border-box;
+  /* Target all elements, including pseudo-elements (::before and ::after) */
 
-  /* Remove default spacing */
+  box-sizing: border-box;
+  /* Use border-box to make sizing predictable */
+
   margin: 0;
   padding: 0;
+  /* Remove default spacing */
 
-  /* Smooth transitions on all properties (be cautious!) */
   transition: all 0.2s ease-in-out;
+  /* Smooth transitions on all properties (be cautious!) */
 }
 
 /* Optional: Respect user's motion preferences in device settings */
+/* If the user has requested reduced motion in their system settings, apply these styles */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
+    /* Target all elements, including pseudo-elements (::before and ::after) */
+
     transition: none !important;
+    /* Remove all CSS transitions (animations like fading, sliding, etc.)
+       The !important ensures this overrides other transition styles. */
   }
 }
 
-/* Html properties are for foundational stuff */
 html {
+  /* Html properties are for foundational stuff */
   font-size: 16px; /* Sets rem baseline */
   direction: ltr; /* Good for clarity, especially if supporting RTL later */
   scroll-behavior: smooth; /* UX-friendly scrolling */
@@ -37,10 +55,20 @@ html {
 }
 
 /* === Base Theme Variables (Light Theme) === */
-/* Define default design tokens for layout and UI styling */
 :root {
+  --max-width: 50rem; /* Limit layout width */
+
+  /* Define default design tokens for layout and UI styling */
   --bg-color: #f4f4f4; /* Page background color */
+  --bg-header: #cfcfcf; /* or #d4d4d4 for more lightness */
   --text-color: #1a1a1a; /* Default text color */
+  --text-nav-hover-color: #e0e0e0; /* Text color on nav link hover */
+  --header-box-shadow: rgba(
+    0,
+    0,
+    0,
+    0.1
+  ); /* Soft shadow for header elevation */
   --accent-color: #d2691e; /* Primary accent color (Welding orange) */
   --border-color: #ccc; /* Border color for elements like tables, cards */
   --input-bg: #fff; /* Background color for form inputs */
@@ -51,10 +79,18 @@ html {
 }
 
 /* === Dark Theme Variables === */
-/* Overrides applied when [data-theme="dark"] is set on <body> */
-body[data-theme="dark"] {
+body[data-theme='dark'] {
+  /* Overrides applied when [data-theme="dark"] is set on <body> */
   --bg-color: #121212; /* Dark background for the page */
+  --bg-header: #1a1a1a; /* consistent with dark code stripe */
   --text-color: #e0e0e0; /* Light text for contrast */
+  --text-nav-hover-color: #1a1a1a; /* Text color on nav link hover */
+  --header-box-shadow: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Soft shadow for header elevation */
   --accent-color: #ff8c00; /* Brighter orange accent for dark mode */
   --border-color: #444; /* Darker borders for subtle contrast */
   --input-bg: #1f1f1f; /* Dark background for form inputs */
@@ -64,217 +100,142 @@ body[data-theme="dark"] {
   --table-stripe: #1a1a1a; /* Subtle row striping for tables */
 }
 
-/* Html properties are for foundational stuff, 
-   body properties are the right place for: 
-   - Visual styling: background-color, color
-   - Typography: font-family, line-height
-   - Layout spacing: padding, margin, display: flex, etc.*/
-body {
-  background-color: var(
-    --bg-color
-  ); /* Set background color from theme variable */
-  color: var(--text-color); /* Set text color from theme variable */
-  font-family: "Segoe UI", sans-serif; /* Use a clean, modern sans-serif font */
-  line-height: 1.6; /* Improve readability with comfortable line spacing */
-  padding: 1rem; /* Add space around the body content */
+/* ----------------------- */
+/* === ELEMENT STYLES === */
+/* ----------------------- */
 
-  display: flex; /* Use Flexbox for layout */
+body,
+header,
+nav,
+nav ul,
+nav li,
+nav li a,
+main,
+footer,
+footer div {
+  /* === Flexbox === */
+  display: flex; /* Flex layout for centering */
+  justify-content: center; /* Center children horizontally */
+  align-items: center; /* Center children vertically */
+  text-align: center; /* Center text (optional) */
+}
+
+footer form,
+footer p {
+  /* === Flexbox === */
+  display: flex; /* Enable flex layout for form and paragraph */
+}
+
+body {
+  /* Body properties are the right place for: 
+     - Visual styling: background-color, color
+     - Typography: font-family, line-height
+     - Layout spacing: padding, margin, display: flex, etc.*/
+  min-height: 100vh; /* Ensure body fills the full height of the viewport */
+  background-color: var(--bg-color);
+  color: var(--text-color); /* Set text color from theme variable */
+  font-family: 'Inter', sans-serif; /* Use a clean, modern sans-serif font */
+  font-weight: 400; /* Regular font weight (normal) */
+  line-height: 1; /* Improve readability with comfortable line spacing */
+  /* Set background color from theme variable */
+
+  /* === Flexbox Container === */
   flex-direction: column; /* Stack children vertically */
   justify-content: flex-start; /* Align items to the top of the page */
-  align-items: center; /* Center items horizontally */
-  min-height: 100vh; /* Ensure body fills the full height of the viewport */
-  text-align: center; /* Center-align text (optional, based on layout needs) */
 }
 
-/* Headings */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: var(--accent-color);
-  font-weight: bold;
-  margin-top: 1.5em;
+header {
+  width: 100%; /* Full width of viewport */
+  position: fixed; /* Stick to top while scrolling */
+  background-color: var(--bg-header); /* Theme-based header background */
+  margin-bottom: 1rem; /* Has no effect with fixed position */
+  box-shadow: 0rem 0.5rem 1rem var(--header-box-shadow); /* Soft elevation shadow */
 }
 
-/* Links */
-a {
-  color: var(--accent-color);
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
+nav {
+  width: 100%; /* Allow full width up to max */
+  max-width: var(--max-width); /* Limit nav width for layout consistency */
 }
 
-/* Tables */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
-}
-th,
-td {
-  border: 1px solid var(--border-color);
-  padding: 0.75rem;
-}
-tr:nth-child(even) {
-  background-color: var(--table-stripe);
+nav > div {
+  width: 100%; /* Allow flex children to split left/right alignment */
 }
 
-/* Forms */
-form {
-  display: grid;
-  gap: 1rem;
-  margin-top: 1rem;
+nav li a {
+  height: 2.5rem;
+  padding: 0.5rem 0.75rem; /* Clickable area padding */
+  color: var(--text-color); /* Default link color */
+  list-style-type: none; /* Remove default bullet points */
+  font-size: 0.9rem; /* Slightly smaller than base font */
+  font-weight: 500; /* Medium weight for clarity */
+  text-decoration: none; /* Remove underline */
+  white-space: nowrap; /* Prevent text wrap */
 }
 
-label {
-  font-weight: bold;
+nav li a:hover {
+  background-color: var(--accent-color); /* Highlight on hover */
+  color: var(--text-nav-hover-color); /* Contrast text on hover */
+  border-radius: 0.25rem; /* Slightly rounded corners */
 }
 
-/* Input styles */
-input,
-select,
-textarea,
-button {
-  padding: 0.6rem 1rem;
-  border: 1px solid var(--input-border);
-  background: var(--input-bg);
-  color: var(--input-text);
-  border-radius: 4px;
-  font-size: 1rem;
+nav button {
+  padding: 0.25rem 0.5rem; /* Slightly more horizontal padding */
+  margin: 0 0.5rem; /* Horizontal spacing between buttons */
+  border-radius: 0.25rem; /* Slight curve on corners */
+  background-color: var(--accent-color); /* Welding orange */
+  color: #fff; /* Default text color */
+  font-size: 0.9rem; /* Slightly smaller text */
+  font-weight: 500; /* Medium weight */
+  border: none; /* Clean look */
+  cursor: pointer; /* Show pointer on hover */
+  transition: background-color 0.2s ease, color 0.2s ease; /* Smooth interaction */
 }
 
-input:focus,
-select:focus,
-textarea:focus {
-  outline: 2px solid var(--accent-color);
+nav button:hover {
+  background-color: var(--text-color); /* Invert for contrast */
+  color: var(--text-nav-hover-color); /* Light text on dark bg */
 }
 
-button {
-  cursor: pointer;
-  background-color: var(--accent-color);
-  color: #fff;
-  border: none;
-}
-button:hover {
-  opacity: 0.9;
-}
+main {
+  width: 100%; /* Allow full width up to max */
+  max-width: var(--max-width); /* Limit nav width for layout consistency */
+  height: 100%; /* Allow full height up to max */
+  margin: 3.5rem 0rem 1rem 0rem; /* Top, right, bottom, left spacing */
+  padding: 0 1rem; /* Horizontal padding (left and right only) */
 
-/* Specific input types */
-input[type="checkbox"],
-input[type="radio"] {
-  width: auto;
-  margin-right: 0.5rem;
-}
+  /* === Flexbox Items (chield of body) === */
+  flex-grow: 1; /* Let main fill remaining space */
 
-input[type="range"] {
-  width: 100%;
+  /* === Flexbox Container === */
+  flex-direction: column; /* Stack children vertically */
+  justify-content: flex-start; /* Align items below header */
+  align-items: center; /* Center children vertically */
 }
 
-input[type="color"] {
-  padding: 0;
-  border: none;
-  background: none;
+footer {
+  width: 100%; /* Allow full width up to max */
+  height: 2rem;
+  background-color: var(--bg-header); /* Match header or use subtle tone */
+  color: var(--text-color); /* Use theme text color */
+  font-size: 0.625rem; /* readable but not overpowering */
+  box-shadow: 0rem -0.5rem 1rem var(--header-box-shadow); /* Soft elevation shadow */
 }
 
-input[type="file"] {
-  background: none;
-  border: none;
+footer > div {
+  max-width: var(--max-width); /* Limit nav width for layout consistency */
+  gap: 1rem; /* Space between child elements */
 }
 
-/* Textarea */
-textarea {
-  resize: vertical;
+/* ----------------------- */
+/* === ID STYLES === */
+/* ----------------------- */
+
+#logo {
+  font-size: 1.25rem; /* Larger size for site title */
+  font-weight: 700; /* Bold for emphasis */
+  letter-spacing: -0.0625rem; /* Slightly tighten space between letters */
 }
 
-/* Code blocks */
-code,
-pre {
-  font-family: "Courier New", monospace;
-  background-color: var(--code-bg);
-  padding: 0.5rem;
-  border-radius: 4px;
-  display: block;
-  overflow-x: auto;
-}
-
-/* Lists */
-ul,
-ol {
-  margin-left: 2rem;
-}
-
-/* Welding-style card */
-.card {
-  border: 1px solid var(--border-color);
-  border-left: 5px solid var(--accent-color);
-  background: var(--input-bg);
-  padding: 1rem;
-  border-radius: 6px;
-  margin: 1rem 0;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Welding-themed subtle texture (optional) */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: repeating-linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.01),
-    rgba(0, 0, 0, 0.02) 2px
-  );
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* Responsive Layout */
-/* Tablet and smaller */
-@media (max-width: 768px) {
-  body {
-    padding: 0.5rem;
-  }
-
-  table,
-  th,
-  td {
-    font-size: 0.875rem;
-  }
-
-  .card {
-    margin: 0.5rem 0;
-    padding: 0.75rem;
-  }
-
-  form {
-    grid-template-columns: 1fr;
-  }
-
-  input,
-  button,
-  textarea,
-  select {
-    width: 100%;
-  }
-}
-
-/* Mobile */
-@media (max-width: 480px) {
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  h2 {
-    font-size: 1.25rem;
-  }
-
-  body {
-    font-size: 0.9rem;
-  }
-}
+/* ----------------------- */
+/* === CLASSE STYLES === */
+/* ----------------------- */

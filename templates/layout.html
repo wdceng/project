@@ -27,45 +27,51 @@
       href="/static/favicon/favicon-16x16.png"
     />
     <link rel="manifest" href="/static/favicon/site.webmanifest" />
+    <!-- Enter google fonts before css files -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Enter google fonts before css files -->
     <link rel="stylesheet" href="/static/styles.css" />
-    <script type="text/javascript" src="/static/scripts.js" defer></script>
-    <title>Weld-DB: {% block title %}{% endblock %}</title>
+    <script src="/static/scripts.js" defer></script>
+    <title>WeldDB: {% block title %}{% endblock %}</title>
   </head>
   <!-- To start with "light" or "dark" theme -->
   <body data-theme="light">
     <header>
       <nav>
-        <div>
-          <ul>
-            <li>
-              <a href="/">Home Page</a>
-            </li>
-          </ul>
-          <div>
-            {% if session["user_id"] %}
-            <ul>
-              <li><a href="/quote">Quote</a></li>
-              <li><a href="/buy">Buy</a></li>
-              <li><a href="/sell">Sell</a></li>
-              <li><a href="/history">History</a></li>
-              <li><a href="/add">Add Cash</a></li>
-            </ul>
-            <ul>
-              <li><a href="/logout">Log Out</a></li>
-            </ul>
-            {% else %}
-            <ul>
-              <li><a href="/register">Register</a></li>
-              <li><a href="/login">Log In</a></li>
-            </ul>
-            {% endif %}
-            <ul>
-              <li>
-                <button onclick="toggleTheme()" id="toggleTheme">Dark</button>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <ul>
+          <li>
+            <a href="/" id="logo">WeldDB</a>
+          </li>
+        </ul>
+        {% if session["user_id"] %}
+        <ul>
+          <li><a href="/quote">Quote</a></li>
+          <li><a href="/buy">Buy</a></li>
+          <li><a href="/sell">Sell</a></li>
+          <li><a href="/history">History</a></li>
+          <li><a href="/add">Add Cash</a></li>
+        </ul>
+        <div></div>
+        <ul>
+          <li><a href="/logout">Log Out</a></li>
+        </ul>
+        {% else %}
+        <div></div>
+        <ul>
+          <li><a href="/register">Register</a></li>
+          <li><a href="/login">Log In</a></li>
+        </ul>
+        {% endif %}
+        <ul>
+          <li>
+            <button onclick="toggleTheme()" id="toggleTheme">Dark</button>
+          </li>
+        </ul>
       </nav>
       {% if get_flashed_messages() %}
       <div role="alert">{{ get_flashed_messages() | join(" ") }}</div>
@@ -73,21 +79,30 @@
     </header>
     <main>{% block main %}{% endblock %}</main>
     <footer>
-      <form
-        action="https://validator.w3.org/check"
-        enctype="multipart/form-data"
-        method="post"
-        target="_blank"
-      >
-        <input name="doctype" type="hidden" value="HTML5" />
-        <input name="fragment" type="hidden" />
-        <input
-          alt="Validate"
-          src="/static/I_heart_validator.png"
-          type="image"
-        />
+      <div>
+        <p>
+          &copy;
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
+          Welding Log Book Database
+        </p>
         <!-- https://validator.w3.org/ -->
-      </form>
+        <form
+          action="https://validator.w3.org/check"
+          enctype="multipart/form-data"
+          method="post"
+          target="_blank"
+        >
+          <input name="doctype" type="hidden" value="HTML5" />
+          <input name="fragment" type="hidden" />
+          <input
+            alt="Validate"
+            src="/static/I_heart_validator.png"
+            type="image"
+          />
+        </form>
+      </div>
     </footer>
   </body>
 </html>
