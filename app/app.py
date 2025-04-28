@@ -55,11 +55,4 @@ def login():
 # Register user
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    return render_template("login.html")
-
-""" example
-@app.route("/buy", methods=["GET", "POST"])
-@login_required
-def buy():
-    return '<h1 style="text-align: center;">Hello, World!</h1>'
-"""
+    return render_template("register.html")
