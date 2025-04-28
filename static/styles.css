@@ -1,11 +1,108 @@
 /*
-SPACING SYSTEM (px)
+------------------------------
+=== DESIGN SCALE REFERENCE ===
+------------------------------
+
+=== SPACING SYSTEM (px) ===
 2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
 
-
-FONT SIZE SYSTEM (px)
+=== FONT SIZE SYSTEM (px) ===
 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+=== REM SCALE SYSTEM (rem) ===
++-----------+--------------+------------------------------------------+
+| rem value | px equivalent | Typical use                             |
++-----------+--------------+------------------------------------------+
+| 0.0625rem | 1px           | Like letter-spacing                     |
+| 0.125rem  | 2px           | Button transform, subtle depth shadow   |
+| 0.1875rem | 3px           | Soft glow effect with accent color      |
+| 0.25rem   | 4px           | Tiny gap, ultra-small spacing           |
+| 0.375rem  | 6px           | Slightly rounded corners                |
+| 0.5rem    | 8px           | Small padding, gap between form elements|
+| 0.625rem  | 10px          | Footer text, very small font            |
+| 0.75rem   | 12px          | Secondary nav links, small buttons      |
+| 0.875rem  | 14px          | Body text for tight designs             |
+| 0.9rem    | 14.4px        | Navigation links, smaller headers       |
+| 1rem      | 16px          | Base font size, normal spacing          |
+| 1.25rem   | 20px          | H2 headings, slightly bigger text       |
+| 1.5rem    | 24px          | H1 headings, large buttons              |
+| 2rem      | 32px          | Hero text, large titles                 |
+| 3rem      | 48px          | Main page banners, huge impact text     |
++-----------+--------------+------------------------------------------+
+
 */
+
+/* ---------------------- */
+/* === ROOT VARIABLES === */
+/* ---------------------- */
+
+:root {
+  /* Layout */
+  --max-width: 85rem; /* Limit layout width */
+
+  /* === Base Theme Variables (Light Theme) === */
+  /* Colors */
+  --accent-color: #d2691e; /* Primary accent color (Welding orange) */
+  --bg-color: #f4f4f4; /* Page background color */
+  --bg-header: #cfcfcf; /* or #d4d4d4 for more lightness */
+
+  /* Text */
+  --text-color: #1a1a1a; /* Default text color */
+  --text-h: #666;
+  --text-nav-hover-color: #e0e0e0; /* Text color on nav link hover */
+
+  /* Input */
+  --input-bg: #fff; /* Background color for form inputs */
+  --input-text: #000; /* Text color inside form inputs */
+  --input-border: #999; /* Border color for form inputs */
+
+  /* Button in main */
+  --button-bg: var(--accent-color); /* Orange for normal button */
+  --button-bg-hover: #b35618; /* Darker orange for hover */
+  --button-text: #fff; /* White text */
+  --button-disabled: var(--border-color); /* Gray for disabled */
+
+  /* Table */
+  --table-stripe: #f0f0f0; /* Alternate row background for tables */
+  --border-color: #ccc; /* Border color for elements like tables, cards */
+
+  /* Effects, shadows, etc. */
+  --header-footer-box-shadow: rgba(0, 0, 0, 0.1);
+  /* Soft shadow for header elevation */
+}
+
+/* === Dark Theme Variables === */
+/* Overrides applied when [data-theme="dark"] is set on <body> */
+body[data-theme='dark'] {
+  /* Colors */
+  --accent-color: #ff8c00; /* Brighter orange accent for dark mode */
+  --bg-color: #121212; /* Dark background for the page */
+  --bg-header: #1a1a1a; /* consistent with dark code stripe */
+
+  /* Text */
+  --text-color: #e0e0e0; /* Light text for contrast */
+  --text-nav-hover-color: #1a1a1a; /* Text color on nav link hover */
+  --text-h: #666;
+
+  /* Input */
+  --input-bg: #1f1f1f; /* Dark background for form inputs */
+  --input-text: #fff; /* Light input text for readability */
+  --input-border: #666; /* Input borders slightly lighter than bg */
+
+  /* Button in main */
+  --button-bg: #1f1f1f; /* Match input background */
+  --button-bg-hover: #292929; /* Slightly lighter for hover */
+  --button-text: #fff; /* Keep high contrast text */
+  --button-disabled: var(--border-color); /* Dimmed for disabled */
+
+  /* Table */
+  --table-stripe: #1a1a1a; /* Subtle row striping for tables */
+  --border-color: #444; /* Darker borders for subtle contrast */
+
+  /* Effects, shadows, etc. */
+  --header-footer-box-shadow: rgba(0, 0, 0, 0.5);
+  /* Soft shadow for header elevation */
+}
 
 /* ---------------------------------- */
 /* === GLOBAL RESET & BASE STYLES === */
@@ -40,54 +137,6 @@ html {
   -moz-text-size-adjust: 100%; /* Prevent font size adjustments in Firefox */
 }
 
-/* === Base Theme Variables (Light Theme) === */
-:root {
-  --max-width: 85rem; /* Limit layout width */
-
-  /* Define default design tokens for layout and UI styling */
-  --bg-color: #f4f4f4; /* Page background color */
-  --bg-header: #cfcfcf; /* or #d4d4d4 for more lightness */
-  --text-color: #1a1a1a; /* Default text color */
-  --text-nav-hover-color: #e0e0e0; /* Text color on nav link hover */
-  --text-h: #666;
-  --header-box-shadow: rgba(0, 0, 0, 0.1);
-  /* Soft shadow for header elevation */
-  --accent-color: #d2691e; /* Primary accent color (Welding orange) */
-  --border-color: #ccc; /* Border color for elements like tables, cards */
-  --input-bg: #fff; /* Background color for form inputs */
-  --input-text: #000; /* Text color inside form inputs */
-  --input-border: #999; /* Border color for form inputs */
-  --button-bg: var(--accent-color); /* Orange for normal button */
-  --button-bg-hover: #b35618; /* Darker orange for hover */
-  --button-text: #fff; /* White text */
-  --button-disabled: var(--border-color); /* Gray for disabled */
-  --code-bg: #e0e0e0; /* Background for code blocks */
-  --table-stripe: #f0f0f0; /* Alternate row background for tables */
-}
-
-/* === Dark Theme Variables === */
-body[data-theme='dark'] {
-  /* Overrides applied when [data-theme="dark"] is set on <body> */
-  --bg-color: #121212; /* Dark background for the page */
-  --bg-header: #1a1a1a; /* consistent with dark code stripe */
-  --text-color: #e0e0e0; /* Light text for contrast */
-  --text-nav-hover-color: #1a1a1a; /* Text color on nav link hover */
-  --text-h: #666;
-  --header-box-shadow: rgba(0, 0, 0, 0.5);
-  /* Soft shadow for header elevation */
-  --accent-color: #ff8c00; /* Brighter orange accent for dark mode */
-  --border-color: #444; /* Darker borders for subtle contrast */
-  --input-bg: #1f1f1f; /* Dark background for form inputs */
-  --input-text: #fff; /* Light input text for readability */
-  --input-border: #666; /* Input borders slightly lighter than bg */
-  --button-bg: #1f1f1f; /* Match input background */
-  --button-bg-hover: #292929; /* Slightly lighter for hover */
-  --button-text: #fff; /* Keep high contrast text */
-  --button-disabled: var(--border-color); /* Dimmed for disabled */
-  --code-bg: #1e1e1e; /* Code block background in dark mode */
-  --table-stripe: #1a1a1a; /* Subtle row striping for tables */
-}
-
 /* ------------------ */
 /* === TAG STYLES === */
 /* ------------------ */
@@ -112,6 +161,10 @@ footer > section {
   text-align: center; /* Center text (optional) */
 }
 
+/* ------------------- */
+/* === BODY STYLE === */
+/* ------------------- */
+
 body {
   /* Body properties are the right place for: 
      - Visual styling: background-color, color
@@ -130,14 +183,22 @@ body {
   justify-content: flex-start; /* Align items to the top of the page */
 }
 
+/* -------------------- */
+/* === HEADER STYLE === */
+/* -------------------- */
+
 header {
   position: fixed; /* Stick to top while scrolling */
   z-index: 1000; /* Make sure it stays on top */
   width: 100%; /* Full width of viewport */
   background-color: var(--bg-header); /* Theme-based header background */
   margin-bottom: 1rem; /* Has no effect with fixed position */
-  box-shadow: 0rem 0.5rem 1rem var(--header-box-shadow); /* Soft elevation shadow */
+  box-shadow: 0rem 0.5rem 1rem var(--header-footer-box-shadow); /* Soft elevation shadow */
 }
+
+/* ------------------------ */
+/* === NAVIGATION STYLE === */
+/* ------------------------ */
 
 nav,
 nav > section {
@@ -190,6 +251,10 @@ nav button:hover {
   background-color: var(--text-color); /* Invert for contrast */
   color: var(--text-nav-hover-color); /* Light text on dark bg */
 }
+
+/* ------------------ */
+/* === MAIN STYLE === */
+/* ------------------ */
 
 main {
   width: 100%; /* Allow full width up to max */
@@ -296,7 +361,8 @@ main input[type='radio'] {
 
 button {
   background-color: var(--button-bg);
-  color: var(--button-text);
+  /* Set button background using theme color */
+  color: var(--button-text); /* Set button text color using theme color */
   border: none; /* Remove default button border */
   padding: 0.75rem 1.5rem; /* Add vertical and horizontal inner spacing */
   font-size: 1rem; /* Set readable text size */
@@ -311,9 +377,10 @@ button {
 
 button:hover {
   background-color: var(--button-bg-hover);
+  /* Set button background using theme color */
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3); /* Stronger shadow */
   transform: translateY(-0.125rem); /* Tiny lift effect */
-  transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s;
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s; /* Smooth hover effects for background, shadow, and lift */
 }
 
 button:disabled {
@@ -324,16 +391,20 @@ button:disabled {
   opacity: 0.6; /* Make disabled button look faded */
 }
 
+/* -------------------- */
+/* === FOOTER STYLE === */
+/* -------------------- */
+
 footer {
+  width: 100%; /* Stretch the footer across the full width */
+  height: 2rem; /* Container height */
   position: fixed; /* Keep footer always visible at the bottom */
   bottom: 0; /* Attach it to the very bottom of the viewport */
   z-index: 1000; /* Make sure it stays on top */
-  width: 100%; /* Stretch the footer across the full width */
-  height: 2rem;
   background-color: var(--bg-header); /* Match header or use subtle tone */
   color: var(--text-color); /* Use theme text color */
   font-size: 0.625rem; /* Readable but not overpowering */
-  box-shadow: 0rem -0.5rem 1rem var(--header-box-shadow); /* Soft elevation shadow */
+  box-shadow: 0rem -0.5rem 1rem var(--header-footer-box-shadow); /* Soft elevation shadow */
 }
 
 footer > section {
@@ -344,12 +415,14 @@ footer > section {
 }
 
 footer h4 {
+  font-size: 0.625rem;
   font-weight: 400;
+  color: var(--text-h);
 }
 
-/* ------------------------------------- */
-/* === @media prefers-reduced-motion === */
-/* ------------------------------------- */
+/* --------------------- */
+/* === MEDIA QUERIES === */
+/* --------------------- */
 
 /* Optional: Respect user's motion preferences in device settings */
 /* If the user has requested reduced motion in their system settings, apply these styles */
@@ -362,5 +435,17 @@ footer h4 {
     transition: none !important;
     /* Remove all CSS transitions (animations like fading, sliding, etc.)
        The !important ensures this overrides other transition styles. */
+  }
+}
+
+@media (max-width: 900px) {
+  html {
+    font-size: 14px; /* Reduce base font size for tablets */
+  }
+}
+
+@media (max-width: 600px) {
+  html {
+    font-size: 10px; /* Further reduce base font size for mobile phones */
   }
 }
