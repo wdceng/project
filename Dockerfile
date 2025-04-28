@@ -16,7 +16,7 @@ ENV PYTHONDONTWRITEBYTECODE=1
 # the application crashes without emitting any logs due to buffering.
 ENV PYTHONUNBUFFERED=1
 
-WORKDIR /app/app
+WORKDIR /
 
 # Create a non-privileged user that the app will run under.
 # See https://docs.docker.com/go/dockerfile-user-best-practices/
@@ -35,20 +35,24 @@ RUN adduser \
 # Leverage a bind mount to requirements.txt to avoid having to copy them into
 # into this layer.
 RUN --mount=type=cache,target=/root/.cache/pip \
-    --mount=type=bind,source=requirements.txt,target=requirements.txt \
+    --mount=type=bind,source=app/requirements.txt,target=requirements.txt \
     python -m pip install -r requirements.txt
 
 # Copy the source code into the container.
 COPY . .
 
-# Set safe read permissions for non-root user (optional but safe)
-RUN chmod -R 755 /app
+## Set safe read permissions for non-root user (optional but safe)
+## This is no longer needed because of setup: WORKDIR /
+# RUN chmod -R 755 /app
 
-# Set safe writte permissions for non-root user (optional but safe)
+## Set safe writte permissions for non-root user (optional but safe)
 # RUN chmod -R 777 /app/flask_session
-# Safer Alternative (if you want to tighten it up)
+
+## Safer Alternative (if you want to tighten it up)
 RUN chown -R appuser /app/flask_session
 
+## Create the folder if it doesn't exist and set correct permissions
+# RUN mkdir -p /app/flask_session && chown -R appuser /app/flask_session
 
 # Switch to the non-privileged user to run the application.
 USER appuser
@@ -57,20 +61,24 @@ USER appuser
 EXPOSE 5050
 
 # Run the application with gunicorn.
-CMD ["gunicorn", "--bind", "0.0.0.0:5050", "app:app", "--timeout 120"]
+## Added "--chdir", "/app" because of /app folder
+CMD ["gunicorn", "--chdir", "/app", "--bind", "0.0.0.0:5050", "app:app", "--timeout", "120"]
+
+## If the Flask app is inside the root folder but I don't want to mix Docker and app files
+# CMD ["gunicorn", "--bind", "0.0.0.0:5050", "app:app", "--timeout 120"]
 
 # Run the application with flask run.
 # CMD ["flask", "run", "--host=0.0.0.0", "--port=5050"]
 
 
-# Minimum Dockerfile requirements, above created by CLI: docker init
+## Minimum Dockerfile requirements, above created by CLI: docker init
 # FROM python:3.13.3-slim
-#
-# WORKDIR /app
-# 
-# COPY requirements.txt .
-# RUN pip install --no-cache-dir -r requirements.txt
-# 
+
+# WORKDIR /
+
+# COPY app/requirements.txt .
+# RUN pip install --no-cache-dir -r /app/requirements.txt
+
 # COPY . .
-#
-# CMD ["gunicorn", "--bind", "0.0.0.0:5050", "app:app"]
+
+# CMD ["gunicorn", "--chdir", "/app", "--bind", "0.0.0.0:5050", "app:app", "--timeout", "120"]

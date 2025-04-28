@@ -12,7 +12,7 @@ from helpers import login_required
 app = Flask(__name__)
 
 # Configure CS50 Library to use SQLite database
-db = SQL("sqlite:///WeldDB.db")
+db = SQL("sqlite:///weld_db.db")
 
 # Flask Run config for Session from flask_session
 # Dockerfile must contain: RUN chown -R appuser /app/flask_session
@@ -56,3 +56,4 @@ def login():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     return render_template("register.html")
+    # return "Working"

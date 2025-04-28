@@ -37,7 +37,7 @@
     <!-- Enter google fonts before css files -->
     <link rel="stylesheet" href="/static/styles.css" />
     <script src="/static/scripts.js" defer></script>
-    <title>WeldDB: {% block title %}{% endblock %}</title>
+    <title>{% block title %}{% endblock %} – WeldDB</title>
   </head>
   <!-- To start with "light" or "dark" theme -->
   <body data-theme="light">
@@ -45,15 +45,11 @@
       <nav>
         <section>
           <h2>
-            <a href="#/">WeldDB</a>
+            <a href="/">WeldDB</a>
           </h2>
           {% if session["user_id"] %}
           <ul>
-            <li><a href="/quote">Quote</a></li>
-            <li><a href="/buy">Buy</a></li>
-            <li><a href="/sell">Sell</a></li>
-            <li><a href="/history">History</a></li>
-            <li><a href="/add">Add Cash</a></li>
+            <li><a href="/Link">Link 1</a></li>
           </ul>
           <div><!-- Allow flex children to split left/right alignment --></div>
           <ul>
