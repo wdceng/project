@@ -41,6 +41,14 @@
   </head>
   <!-- To start with "light" or "dark" theme -->
   <body data-theme="light">
+    <script>
+      // --------------------------------------------
+      // === Set the theme based on URL parameter ===
+      // --------------------------------------------
+      const urlParams = new URLSearchParams(window.location.search); // Get URL parameters
+      const urlTheme = urlParams.get("t") || "light"; // Default to light theme if not specified
+      document.body.setAttribute("data-theme", urlTheme);
+    </script>
     <header>
       <nav>
         <section>

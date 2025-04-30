@@ -1,36 +1,39 @@
-{% extends "layout.html" %} {% block title %} Register {% endblock %} {% block
-main %}
-<!-- <section> -->
-<section class="center">
-  <h3>Register</h3>
-  <form action="/register" method="post">
-    <div>
-      <input
-        autocomplete="off"
-        autofocus
-        class="form-control mx-auto w-auto"
-        name="username"
-        placeholder="Username"
-        type="text"
-      />
-    </div>
-    <div>
-      <input
-        class="form-control mx-auto w-auto"
-        name="password"
-        placeholder="Password"
-        type="password"
-      />
-    </div>
-    <div>
-      <input
-        class="form-control mx-auto w-auto"
-        name="confirmation"
-        placeholder="Pass. confirmation"
-        type="password"
-      />
-    </div>
-    <button class="btn btn-primary" type="submit">Register</button>
-  </form>
-</section>
+{% extends "layout.html" %}
+{% block title %}
+  Register
+{% endblock %}
+{% block main %}
+  <!-- <section> -->
+  <section class="center">
+    <h3>Register</h3>
+    <form action="/register" method="post">
+      <div>
+        <input
+          autocomplete="off"
+          autofocus
+          class="form-control mx-auto w-auto"
+          name="username"
+          placeholder="Username"
+          type="text"
+        />
+      </div>
+      <div>
+        <input
+          class="form-control mx-auto w-auto"
+          name="password"
+          placeholder="Password"
+          type="password"
+        />
+      </div>
+      <div>
+        <input
+          class="form-control mx-auto w-auto"
+          name="confirmation"
+          placeholder="Pass. confirmation"
+          type="password"
+        />
+      </div>
+      <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+  </section>
 {% endblock %}
