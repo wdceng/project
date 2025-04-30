@@ -1,10 +1,12 @@
 {
-  "singleQuote": false,
+  "tabWidth": 2,
+  "useTabs": false,
+  "plugins": ["prettier-plugin-jinja-template"],
   "overrides": [
     {
-      "files": ["**/*.css", "**/*.js"],
+      "files": ["*.html", "*.jinja", "*.jinja2"],
       "options": {
-        "singleQuote": true
+        "parser": "jinja-template"
       }
     }
   ]

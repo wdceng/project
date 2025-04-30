@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -48,19 +48,23 @@
             <a href="/">WeldDB</a>
           </h2>
           {% if session["user_id"] %}
-          <ul>
-            <li><a href="/Link">Link 1</a></li>
-          </ul>
-          <div><!-- Allow flex children to split left/right alignment --></div>
-          <ul>
-            <li><a href="/logout">Log Out</a></li>
-          </ul>
+            <ul>
+              <li><a href="/Link">Link 1</a></li>
+            </ul>
+            <div>
+              <!-- Allow flex children to split left/right alignment -->
+            </div>
+            <ul>
+              <li><a href="/logout">Log Out</a></li>
+            </ul>
           {% else %}
-          <div><!-- Allow flex children to split left/right alignment --></div>
-          <ul>
-            <li><a href="/register">Register</a></li>
-            <li><a href="/login">Log In</a></li>
-          </ul>
+            <div>
+              <!-- Allow flex children to split left/right alignment -->
+            </div>
+            <ul>
+              <li><a href="/register">Register</a></li>
+              <li><a href="/login">Log In</a></li>
+            </ul>
           {% endif %}
           <ul>
             <li>
@@ -69,9 +73,12 @@
           </ul>
         </section>
       </nav>
-      {% if get_flashed_messages() %} {% endif %}
     </header>
-    <div role="alert">{{ get_flashed_messages() | join(" ") }}</div>
+    <div>
+      {% if get_flashed_messages() %}
+        {{ get_flashed_messages() | join(" ") }}
+      {% endif %}
+    </div>
     <main>{% block main %}{% endblock %}</main>
     <footer>
       <section>

@@ -43,11 +43,13 @@
   /* === Base Theme Variables (Light Theme) === */
   /* Colors */
   --accent-color: #d2691e; /* Primary accent color (Welding orange) */
-  --bg-color: #f4f4f4; /* Page background color */
   --bg-header-footer: #d4d4d4; /* darker #cfcfcf or #d4d4d4 for more lightness */
 
-  /* Text */
+  /* Body */
+  --bg-color: #f4f4f4; /* Page background color */
   --text-color: #1a1a1a; /* Default text color */
+
+  /* Text */
   --text-h: #666;
   --text-nav-hover-color: #e0e0e0; /* Text color on nav link hover */
 
@@ -76,11 +78,13 @@
 body[data-theme='dark'] {
   /* Colors */
   --accent-color: #ff8c00; /* Brighter orange accent for dark mode */
-  --bg-color: #121212; /* Dark background for the page */
   --bg-header-footer: #1a1a1a; /* consistent with dark code stripe */
 
-  /* Text */
+  /* Body */
+  --bg-color: #121212; /* Dark background for the page */
   --text-color: #e0e0e0; /* Light text for contrast */
+
+  /* Text */
   --text-nav-hover-color: #1a1a1a; /* Text color on nav link hover */
   --text-h: #aaa;
 
