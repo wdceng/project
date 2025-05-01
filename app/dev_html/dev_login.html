@@ -43,7 +43,7 @@
   <body data-theme="light">
     <script>
       // === Apply initial theme based on URL param or system preference ===
-      function getInitialTheme() {
+      function getInitialThemeAndUpdateUrl() {
         // Try reading from URL ?t=...
         const searchParams = new URLSearchParams(window.location.search);
         let theme = searchParams.get("t");
@@ -71,25 +71,25 @@
       }
 
       // Apply the detected theme
-      document.body.setAttribute("data-theme", getInitialTheme());
+      document.body.setAttribute("data-theme", getInitialThemeAndUpdateUrl());
     </script>
     <header>
       <nav>
         <section>
           <h2>
-            <a href="#/?t=light">WeldDB</a>
+            <a href="#">WeldDB</a>
           </h2>
           <ul>
-            <li><a href="#/quote?t=light">Link 1</a></li>
-            <li><a href="#/buy?t=light">Link 2</a></li>
-            <li><a href="#/sell?t=light">Link 3</a></li>
-            <li><a href="#/history?t=light">Link 4</a></li>
-            <li><a href="#/add?t=light">Link 5</a></li>
+            <li><a href="#quote">Link 1</a></li>
+            <li><a href="#buy">Link 2</a></li>
+            <li><a href="#sell">Link 3</a></li>
+            <li><a href="#history">Link 4</a></li>
+            <li><a href="#add">Link 5</a></li>
           </ul>
           <div><!-- Allow flex children to split left/right alignment --></div>
           <ul>
-            <li><a href="#/register?t=light">Register</a></li>
-            <li><a href="#/login?t=light">Log In</a></li>
+            <li><a href="#register">Register</a></li>
+            <li><a href="#login">Log In</a></li>
           </ul>
           <ul>
             <li>

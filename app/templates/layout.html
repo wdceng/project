@@ -40,10 +40,10 @@
     <title>{% block title %}{% endblock %} – WeldDB</title>
   </head>
   <!-- To start with "light" or "dark" theme -->
-  <body data-theme="{{ theme }}">
+  <body data-theme="light">
     <script>
       // === Apply initial theme based on URL param or system preference ===
-      function getInitialTheme() {
+      function getInitialThemeAndUpdateUrl() {
         // Try reading from URL ?t=...
         const searchParams = new URLSearchParams(window.location.search);
         let theme = searchParams.get("t");
@@ -71,31 +71,31 @@
       }
 
       // Apply the detected theme
-      document.body.setAttribute("data-theme", getInitialTheme());
+      document.body.setAttribute("data-theme", getInitialThemeAndUpdateUrl());
     </script>
     <header>
       <nav>
         <section>
           <h2>
-            <a href="/?t={{ theme }}">WeldDB</a>
+            <a href="/">WeldDB</a>
           </h2>
           {% if session["user_id"] %}
             <ul>
-              <li><a href="/link1?t={{ theme }}">Link 1</a></li>
+              <li><a href="/link1">Link 1</a></li>
             </ul>
             <div>
               <!-- Allow flex children to split left/right alignment -->
             </div>
             <ul>
-              <li><a href="/logout?t={{ theme }}">Log Out</a></li>
+              <li><a href="/logout">Log Out</a></li>
             </ul>
           {% else %}
             <div>
               <!-- Allow flex children to split left/right alignment -->
             </div>
             <ul>
-              <li><a href="/register?t={{ theme }}">Register</a></li>
-              <li><a href="/login?t={{ theme }}">Log In</a></li>
+              <li><a href="/register">Register</a></li>
+              <li><a href="/login">Log In</a></li>
             </ul>
           {% endif %}
           <ul>

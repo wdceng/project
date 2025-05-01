@@ -19,9 +19,10 @@
 // Ref.: https://stackoverflow.com/a/11316355
 function updateLinksWithThemeParam(theme) {
     const links = document.querySelectorAll(
-        'a[href^="/"], a[href^="#/"], a[href^="./"], a[href^="../"]'
-    ); // Select all local <a> elements
+        'a[href^="/"], a[href^="./"], a[href^="../"]'
+    ); // Select local <a> elements without #
 
+    // Loop through each matching <a> element
     links.forEach((link) => {
         const url = new URL(link.href, window.location.origin); // Parse full URL from href
         url.searchParams.set("t", theme); // Add or update the 't' query param
