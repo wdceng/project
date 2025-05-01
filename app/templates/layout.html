@@ -40,38 +40,61 @@
     <title>{% block title %}{% endblock %} – WeldDB</title>
   </head>
   <!-- To start with "light" or "dark" theme -->
-  <body data-theme="light">
+  <body data-theme="{{ theme }}">
     <script>
-      // --------------------------------------------
-      // === Set the theme based on URL parameter ===
-      // --------------------------------------------
-      const urlParams = new URLSearchParams(window.location.search); // Get URL parameters
-      const urlTheme = urlParams.get("t") || "light"; // Default to light theme if not specified
-      document.body.setAttribute("data-theme", urlTheme);
+      // === Apply initial theme based on URL param or system preference ===
+      function getInitialTheme() {
+        // Try reading from URL ?t=...
+        const searchParams = new URLSearchParams(window.location.search);
+        let theme = searchParams.get("t");
+
+        // If not found, use system preference
+        if (!theme) {
+          const prefersDark = window.matchMedia(
+            "(prefers-color-scheme: dark)"
+          ).matches;
+          theme = prefersDark ? "dark" : "light";
+
+          // Update the URL to include ?t=... without reloading the page
+          const newParams = new URLSearchParams(window.location.search);
+          newParams.set("t", theme);
+          const newUrl =
+            window.location.pathname +
+            "?" +
+            newParams.toString() +
+            window.location.hash;
+          window.history.replaceState({}, "", newUrl);
+        }
+
+        return theme;
+      }
+
+      // Apply the detected theme
+      document.body.setAttribute("data-theme", getInitialTheme());
     </script>
     <header>
       <nav>
         <section>
           <h2>
-            <a href="/">WeldDB</a>
+            <a href="/?t={{ theme }}">WeldDB</a>
           </h2>
           {% if session["user_id"] %}
             <ul>
-              <li><a href="/Link">Link 1</a></li>
+              <li><a href="/link1?t={{ theme }}">Link 1</a></li>
             </ul>
             <div>
               <!-- Allow flex children to split left/right alignment -->
             </div>
             <ul>
-              <li><a href="/logout">Log Out</a></li>
+              <li><a href="/logout?t={{ theme }}">Log Out</a></li>
             </ul>
           {% else %}
             <div>
               <!-- Allow flex children to split left/right alignment -->
             </div>
             <ul>
-              <li><a href="/register">Register</a></li>
-              <li><a href="/login">Log In</a></li>
+              <li><a href="/register?t={{ theme }}">Register</a></li>
+              <li><a href="/login?t={{ theme }}">Log In</a></li>
             </ul>
           {% endif %}
           <ul>

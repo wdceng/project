@@ -42,30 +42,53 @@
   <!-- To start with "light" or "dark" theme -->
   <body data-theme="light">
     <script>
-      // --------------------------------------------
-      // === Set the theme based on URL parameter ===
-      // --------------------------------------------
-      const urlParams = new URLSearchParams(window.location.search); // Get URL parameters
-      const urlTheme = urlParams.get("t") || "light"; // Default to light theme if not specified
-      document.body.setAttribute("data-theme", urlTheme); // Set the theme
+      // === Apply initial theme based on URL param or system preference ===
+      function getInitialTheme() {
+        // Try reading from URL ?t=...
+        const searchParams = new URLSearchParams(window.location.search);
+        let theme = searchParams.get("t");
+
+        // If not found, use system preference
+        if (!theme) {
+          const prefersDark = window.matchMedia(
+            "(prefers-color-scheme: dark)"
+          ).matches;
+          theme = prefersDark ? "dark" : "light";
+
+          // Update the URL to include ?t=... without reloading the page
+          const newParams = new URLSearchParams(window.location.search);
+          newParams.set("t", theme);
+          const newUrl =
+            window.location.pathname +
+            "?" +
+            newParams.toString() +
+            window.location.hash;
+          window.history.replaceState({}, "", newUrl);
+        }
+
+        return theme;
+      }
+
+      // Apply the detected theme
+      document.body.setAttribute("data-theme", getInitialTheme());
     </script>
     <header>
       <nav>
         <section>
           <h2>
-            <a href="#/">WeldDB</a>
+            <a href="#/?t=light">WeldDB</a>
           </h2>
           <ul>
-            <li><a href="#/quote">Link 1</a></li>
-            <li><a href="#/buy">Link 2</a></li>
-            <li><a href="#/sell">Link 3</a></li>
-            <li><a href="#/history">Link 4</a></li>
-            <li><a href="#/add">Link 5</a></li>
+            <li><a href="#/quote?t=light">Link 1</a></li>
+            <li><a href="#/buy?t=light">Link 2</a></li>
+            <li><a href="#/sell?t=light">Link 3</a></li>
+            <li><a href="#/history?t=light">Link 4</a></li>
+            <li><a href="#/add?t=light">Link 5</a></li>
           </ul>
           <div><!-- Allow flex children to split left/right alignment --></div>
           <ul>
-            <li><a href="#/register">Register</a></li>
-            <li><a href="#/login">Log In</a></li>
+            <li><a href="#/register?t=light">Register</a></li>
+            <li><a href="#/login?t=light">Log In</a></li>
           </ul>
           <ul>
             <li>

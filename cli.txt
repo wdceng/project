@@ -1,0 +1,2 @@
+docker build -t welddb:1.00 .       
+docker run -p 5050:5050  welddb:1.00
