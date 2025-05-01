@@ -62,7 +62,8 @@
             window.location.pathname +
             "?" +
             newParams.toString() +
-            window.location.hash;
+            window.location.hash; // Preserve the hash if it exists
+          // Update the URL in the address bar without reloading the page
           window.history.replaceState({}, "", newUrl);
         }
 

@@ -45,7 +45,18 @@ function toggleTheme() {
     const buttonText = document.getElementById("toggleTheme");
     buttonText.innerText = nextTheme === "light" ? "Dark" : "Light";
 
-    updateLinksWithThemeParam(nextTheme); // Call the function to update links
+    updateLinksWithThemeParam(nextTheme); // Call the function to update all links
+
+    // Update the URL to include ?t=... without reloading the page
+    const newParams = new URLSearchParams(window.location.search);
+    newParams.set("t", nextTheme);
+    const newUrl =
+        window.location.pathname +
+        "?" +
+        newParams.toString() +
+        window.location.hash; // Preserve the hash if it exists
+    // Update the URL in the address bar without reloading the page
+    window.history.replaceState({}, "", newUrl);
 }
 
 // --------------------------------------------------------------------------------
@@ -57,6 +68,7 @@ document.getElementById("footerYear").textContent = new Date().getFullYear();
 // === DOMContentLoaded ===
 // ------------------------
 document.addEventListener("DOMContentLoaded", () => {
+    // === Update all links with theme param ===
     // Get the current theme from the body tag
     const currentTheme = document.body.getAttribute("data-theme");
 
@@ -65,9 +77,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let urlTheme = searchParams.get("t") || currentTheme || "light"; // Default to light if not set
 
     updateLinksWithThemeParam(urlTheme); // Call the function to update links
-    // ----------------------
+
     // === HTML Validator ===
-    // ----------------------
     // Adapted from https://stackoverflow.com/a/10162353
     const html =
         "<!DOCTYPE " +
