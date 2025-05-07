@@ -41,17 +41,19 @@
     --max-width: 85rem; /* Limit layout width */
 
     /* === Base Theme Variables (Light Theme) === */
-    /* Colors */
+    /* Main colors */
     --accent-color: #d2691e; /* Primary accent color (Welding orange) */
-    --bg-header-footer: #d4d4d4; /* darker #cfcfcf or #d4d4d4 for more lightness */
 
     /* Body */
     --bg-color: #f4f4f4; /* Page background color */
     --text-color: #1a1a1a; /* Default text color */
+    --text-h: #3a3a3a; /* Header text color for contrast */
 
-    /* Text */
-    --text-h: #666;
+    /* Header, Nav and Footer */
+    --bg-header-footer: #d4d4d4; /* darker #cfcfcf or #d4d4d4 for more lightness */
     --text-nav-hover-color: #e0e0e0; /* Text color on nav link hover */
+    --header-footer-box-shadow: rgba(0, 0, 0, 0.1);
+    /* Soft shadow for header and footer elevation */
 
     /* Input */
     --input-bg: #eee; /* Background color for form inputs */
@@ -67,26 +69,24 @@
     /* Table */
     --table-stripe: #f0f0f0; /* Alternate row background for tables */
     --border-color: #ccc; /* Border color for elements like tables, cards */
-
-    /* Effects, shadows, etc. */
-    --header-footer-box-shadow: rgba(0, 0, 0, 0.1);
-    /* Soft shadow for header elevation */
 }
 
 /* === Dark Theme Variables === */
 /* Overrides applied when [data-theme="dark"] is set on <body> */
 body[data-theme="dark"] {
-    /* Colors */
+    /* Main colors */
     --accent-color: #ff8c00; /* Brighter orange accent for dark mode */
-    --bg-header-footer: #1a1a1a; /* consistent with dark code stripe */
 
     /* Body */
     --bg-color: #121212; /* Dark background for the page */
     --text-color: #e0e0e0; /* Light text for contrast */
+    --text-h: #dcdcdc; /* Header text color for contrast */
 
-    /* Text */
+    /* Header, Nav and Footer */
+    --bg-header-footer: #1a1a1a; /* consistent with dark code stripe */
     --text-nav-hover-color: #1a1a1a; /* Text color on nav link hover */
-    --text-h: #aaa;
+    --header-footer-box-shadow: rgba(0, 0, 0, 0.5);
+    /* Soft shadow for header and footer elevation */
 
     /* Input */
     --input-bg: #1f1f1f; /* Dark background for form inputs */
@@ -102,10 +102,6 @@ body[data-theme="dark"] {
     /* Table */
     --table-stripe: #1a1a1a; /* Subtle row striping for tables */
     --border-color: #444; /* Darker borders for subtle contrast */
-
-    /* Effects, shadows, etc. */
-    --header-footer-box-shadow: rgba(0, 0, 0, 0.5);
-    /* Soft shadow for header elevation */
 }
 
 /* ---------------------------------- */

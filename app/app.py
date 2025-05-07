@@ -30,14 +30,12 @@ def after_request(response):
 
 
 # Set default theme and inject it into all Jinja templates automatically
-"""
 @app.context_processor
 def inject_theme():
     theme = request.args.get("t", "light")
     if theme not in ["dark", "light"]:
         theme = "light"
     return dict(theme=theme)
-"""
 
 
 # Home Page

@@ -41,20 +41,10 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 # Copy the source code into the container.
 COPY . .
 
-## Set safe read permissions for non-root user (optional but safe)
-## This is no longer needed because of setup: WORKDIR /
-# RUN chmod -R 755 /app
+# Ensure the non-root user owns all application files to allow safe read/write access at runtime
+RUN chown -R appuser /app
 
-## Set safe writte permissions for non-root user (optional but safe)
-# RUN chmod -R 777 /app/flask_session
-
-## Safer Alternative (if you want to tighten it up)
-RUN chown -R appuser /app/flask_session
-
-## Create the folder if it doesn't exist and set correct permissions
-# RUN mkdir -p /app/flask_session && chown -R appuser /app/flask_session
-
-# Switch to the non-privileged user to run the application.
+# Drop privileges by switching to the non-root user for improved container security
 USER appuser
 
 # Expose the port that the application listens on.
@@ -69,7 +59,6 @@ CMD ["gunicorn", "--chdir", "/app", "--bind", "0.0.0.0:5050", "app:app", "--time
 
 # Run the application with flask run.
 # CMD ["flask", "run", "--host=0.0.0.0", "--port=5050"]
-
 
 ## Minimum Dockerfile requirements, above created by CLI: docker init
 # FROM python:3.13.3-slim
