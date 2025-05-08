@@ -30,6 +30,7 @@ def after_request(response):
 
 
 # Set default theme and inject it into all Jinja templates automatically
+# Ref. https://flask.palletsprojects.com/en/stable/templating/
 @app.context_processor
 def inject_theme():
     theme = request.args.get("t", "light")

@@ -12,21 +12,28 @@
 "use strict";
 // Everything below is in strict mode
 
-// --------------------------------------------
-// === Toggle between light and dark themes ===
-// --------------------------------------------
+/* -------------------------------------------- */
+/* === Toggle between light and dark themes === */
+/* -------------------------------------------- */
 // Inject current theme (?t=dark or ?t=light) into all internal links
 // Ref.: https://stackoverflow.com/a/11316355
-function updateLinksWithThemeParam(theme) {
+function updateLinksFormsWithThemeParam(theme) {
+    // Update all internal <a> links with theme param, without #
     const links = document.querySelectorAll(
         'a[href^="/"], a[href^="./"], a[href^="../"]'
-    ); // Select local <a> elements without #
-
-    // Loop through each matching <a> element
+    );
     links.forEach((link) => {
         const url = new URL(link.href, window.location.origin); // Parse full URL from href
         url.searchParams.set("t", theme); // Add or update the 't' query param
         link.href = url.pathname + url.search; // Write updated path and query back to href
+    });
+
+    // Update all <form> actions with theme param
+    const forms = document.querySelectorAll("form[action]");
+    forms.forEach((form) => {
+        const url = new URL(form.action, window.location.origin); // Parse full URL from href
+        url.searchParams.set("t", theme); // Add or update the 't' query param
+        form.action = url.pathname + url.search; // Write updated path and query back to href
     });
 }
 
@@ -46,7 +53,8 @@ function toggleTheme() {
     const buttonText = document.getElementById("toggleTheme");
     buttonText.innerText = nextTheme === "light" ? "Dark" : "Light";
 
-    updateLinksWithThemeParam(nextTheme); // Call the function to update all links
+    // Call the function to update all links and forms
+    updateLinksFormsWithThemeParam(nextTheme);
 
     // Update the URL to include ?t=... without reloading the page
     const newParams = new URLSearchParams(window.location.search);
@@ -60,16 +68,16 @@ function toggleTheme() {
     window.history.replaceState({}, "", newUrl);
 }
 
-// --------------------------------------------------------------------------------
-// === Set the text inside the element with id "footerYear" to the current year ===
-// --------------------------------------------------------------------------------
+/* -------------------------------------------------------------------------------- */
+/* === Set the text inside the element with id "footerYear" to the current year === */
+/* -------------------------------------------------------------------------------- */
 document.getElementById("footerYear").textContent = new Date().getFullYear();
 
 // ------------------------
 // === DOMContentLoaded ===
 // ------------------------
 document.addEventListener("DOMContentLoaded", () => {
-    // === Update all links with theme param ===
+    /* === Update all links with theme param === */
     // Get the current theme from the body tag
     const currentTheme = document.body.getAttribute("data-theme");
 
@@ -77,9 +85,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchParams = new URLSearchParams(window.location.search);
     let urlTheme = searchParams.get("t") || currentTheme || "light"; // Default to light if not set
 
-    updateLinksWithThemeParam(urlTheme); // Call the function to update links
+    // Call the function to update links and forms
+    updateLinksFormsWithThemeParam(urlTheme);
 
-    // === HTML Validator ===
+    /* === HTML Validator === */
     // Adapted from https://stackoverflow.com/a/10162353
     const html =
         "<!DOCTYPE " +

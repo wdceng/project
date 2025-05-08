@@ -40,7 +40,7 @@
     <title>{% block title %}{% endblock %} – WeldDB</title>
   </head>
   <!-- To start with "light" or "dark" theme -->
-  <body data-theme="light">
+  <body data-theme="{{ theme }}">
     <script>
       // === Apply initial theme based on URL param or system preference ===
       function getInitialThemeAndUpdateUrl() {
