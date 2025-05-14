@@ -3,6 +3,8 @@
 === DESIGN SCALE REFERENCE ===
 ------------------------------
 
+Ref. https://typescale.com/
+
 === SPACING SYSTEM (px) ===
 2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
 
@@ -30,10 +32,6 @@
 | 3rem      | 48px          | Main page banners, huge impact text     |
 +-----------+--------------+------------------------------------------+
 
-
-=== SPACING SYSTEM (px) ===
-
-
 */
 
 /* ---------------------- */
@@ -44,68 +42,97 @@
     /* Layout */
     --max-width: 85rem; /* Limit layout width */
 
+    /* Ref. https://yeun.github.io/open-color/#orange */
+    /* MAIN COLOR */
+    --oc-orange-0: #fff4e6;
+    --oc-orange-1: #ffe8cc;
+    --oc-orange-2: #ffd8a8;
+    --oc-orange-3: #ffc078;
+    --oc-orange-4: #ffa94d;
+    --oc-orange-5: #ff922b;
+    --oc-orange-6: #fd7e14;
+    --oc-orange-7: #f76707;
+    --oc-orange-8: #e8590c;
+    --oc-orange-9: #d9480f;
+    /* GRAY COLOR */
+    --oc-gray-0: #f8f9fa;
+    --oc-gray-1: #f1f3f5;
+    --oc-gray-2: #e9ecef;
+    --oc-gray-3: #dee2e6;
+    --oc-gray-4: #ced4da;
+    --oc-gray-5: #adb5bd;
+    --oc-gray-6: #868e96;
+    --oc-gray-7: #495057;
+    --oc-gray-8: #343a40;
+    --oc-gray-9: #212529;
+
     /* === Base Theme Variables (Light Theme) === */
     /* Main colors */
-    --accent-color: #d2691e; /* Primary accent color (Welding orange) */
+    --accent-color: var(--oc-orange-6);
+    /* Primary accent color (Welding orange) */
 
     /* Body */
-    --bg-color: #f4f4f4; /* Page background color */
-    --text-color: #1a1a1a; /* Default text color */
-    --text-h: #3a3a3a; /* Header text color for contrast */
+    --bg-color: var(--oc-gray-0); /* Page background color */
+    --text-color: var(--oc-gray-9); /* Default text color */
+    --text-h: var(--oc-gray-8); /* Header text color for contrast */
 
     /* Header, Nav and Footer */
-    --bg-header-footer: #d4d4d4; /* darker #cfcfcf or #d4d4d4 for more lightness */
-    --text-nav-hover-color: #e0e0e0; /* Text color on nav link hover */
+    --bg-header-footer: var(--oc-gray-2);
+    /* darker #cfcfcf or #d4d4d4 for more lightness */
+    --text-nav-hover-color: var(--oc-gray-0); /* Text color on nav link hover */
     --header-footer-box-shadow: rgba(0, 0, 0, 0.1);
     /* Soft shadow for header and footer elevation */
 
     /* Input */
-    --input-bg: #eee; /* Background color for form inputs */
-    --input-text: #111; /* Text color inside form inputs */
-    --input-border: #999; /* Border color for form inputs */
+    --input-bg: var(--oc-gray-1); /* Background color for form inputs */
+    --input-text: var(--oc-gray-9); /* Text color inside form inputs */
+    --input-border: var(--oc-gray-5); /* Border color for form inputs */
 
     /* Button in main */
-    --button-bg: var(--accent-color); /* Orange for normal button */
-    --button-bg-hover: #b35618; /* Darker orange for hover */
-    --button-text: #ddd; /* White text */
-    --button-disabled: var(--border-color); /* Gray for disabled */
+    --button-bg: var(--oc-orange-6); /* Orange for normal button */
+    --button-bg-hover: var(--oc-orange-7); /* Darker orange for hover */
+    --button-text: var(--oc-gray-0); /* White text */
+    --button-disabled: var(--oc-gray-4); /* Gray for disabled */
 
     /* Table */
-    --table-stripe: #f0f0f0; /* Alternate row background for tables */
-    --border-color: #ccc; /* Border color for elements like tables, cards */
+    --table-stripe: var(--oc-gray-1); /* Alternate row background for tables */
+    --border-color: var(--oc-gray-4);
+    /* Border color for elements like tables, cards */
 }
 
 /* === Dark Theme Variables === */
 /* Overrides applied when [data-theme="dark"] is set on <body> */
 body[data-theme="dark"] {
     /* Main colors */
-    --accent-color: #ff8c00; /* Brighter orange accent for dark mode */
+    --accent-color: var(--oc-orange-4);
+    /* Brighter orange accent for dark mode */
 
     /* Body */
-    --bg-color: #121212; /* Dark background for the page */
-    --text-color: #e0e0e0; /* Light text for contrast */
-    --text-h: #dcdcdc; /* Header text color for contrast */
+    --bg-color: var(--oc-gray-9); /* Dark background for the page */
+    --text-color: var(--oc-gray-0); /* Light text for contrast */
+    --text-h: var(--oc-gray-1); /* Header text color for contrast */
 
     /* Header, Nav and Footer */
-    --bg-header-footer: #1a1a1a; /* consistent with dark code stripe */
-    --text-nav-hover-color: #1a1a1a; /* Text color on nav link hover */
+    --bg-header-footer: var(--oc-gray-8); /* consistent with dark code stripe */
+    --text-nav-hover-color: var(--oc-gray-9); /* Text color on nav link hover */
     --header-footer-box-shadow: rgba(0, 0, 0, 0.5);
     /* Soft shadow for header and footer elevation */
 
     /* Input */
-    --input-bg: #1f1f1f; /* Dark background for form inputs */
-    --input-text: #eee; /* Light input text for readability */
-    --input-border: #888; /* Input borders slightly lighter than bg */
+    --input-bg: var(--oc-gray-8); /* Dark background for form inputs */
+    --input-text: var(--oc-gray-0); /* Light input text for readability */
+    --input-border: var(--oc-gray-6);
+    /* Input borders slightly lighter than bg */
 
     /* Button in main */
-    --button-bg: #1f1f1f; /* Match input background */
-    --button-bg-hover: #292929; /* Slightly lighter for hover */
-    --button-text: #aaa; /* Keep high contrast text */
-    --button-disabled: var(--border-color); /* Dimmed for disabled */
+    --button-bg: var(--oc-gray-7); /* Match input background */
+    --button-bg-hover: var(--oc-gray-6); /* Slightly lighter for hover */
+    --button-text: var(--oc-gray-0); /* Keep high contrast text */
+    --button-disabled: var(--oc-gray-6); /* Dimmed for disabled */
 
     /* Table */
-    --table-stripe: #1a1a1a; /* Subtle row striping for tables */
-    --border-color: #444; /* Darker borders for subtle contrast */
+    --table-stripe: var(--oc-gray-8); /* Subtle row striping for tables */
+    --border-color: var(--oc-gray-6); /* Darker borders for subtle contrast */
 }
 
 /* ---------------------------------- */
@@ -220,22 +247,28 @@ nav h2 a {
     font-size: 1.25rem !important; /* Larger size for site title */
     font-weight: 700 !important; /* Bold for emphasis */
     letter-spacing: -0.0625rem !important; /* Slightly tighten space between letters */
+    text-transform: none !important; /* Prevent any text casing changes */
 }
 
-nav h2 a,
-nav li a {
-    height: 2.5rem;
+nav h2 a:link,
+nav h2 a:visited,
+nav li a:link,
+nav li a:visited {
+    color: var(--text-color); /* Default link color */
+    text-decoration: none; /* Remove underline */
+    text-transform: uppercase; /* Make text all uppercase letters */
+    font-weight: 600; /* Medium weight for clarity */
+    font-size: 0.9rem; /* Slightly smaller than base font */
+    white-space: nowrap; /* Prevent text wrap */
+    height: 2.5rem; /* Set fixed element height */
     padding: 0.5rem 0.75rem; /* Clickable area padding */
     list-style-type: none; /* Remove default bullet points */
-    color: var(--text-color); /* Default link color */
-    font-size: 0.9rem; /* Slightly smaller than base font */
-    font-weight: 600; /* Medium weight for clarity */
-    text-decoration: none; /* Remove underline */
-    white-space: nowrap; /* Prevent text wrap */
 }
 
 nav h2 a:hover,
-nav li a:hover {
+nav h2 a:active,
+nav li a:hover,
+nav li a:active {
     background-color: var(--accent-color); /* Highlight on hover */
     color: var(--text-nav-hover-color); /* Contrast text on hover */
     border-radius: 0.25rem; /* Slightly rounded corners */
