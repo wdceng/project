@@ -5,6 +5,7 @@ Flask-Session==0.8.0
 # functools # The functools module is part of Python’s standard library
 # sqlite3==3.43.2 # The sqlite3 module is part of Python’s standard library
 gunicorn==23.0.0
+# Werkzeug>=2.3.0 # Werkzeug is a core dependency of Flask and is automatically installed when you install Flask
 
 # From CS50 finance app:
 # cs50
