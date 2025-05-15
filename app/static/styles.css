@@ -42,7 +42,15 @@ Ref. https://typescale.com/
     /* Layout */
     --max-width: 85rem; /* Limit layout width */
 
-    /* Ref. https://yeun.github.io/open-color/#orange */
+    /* 
+    * Ref. for color system:
+    * Open Color v1.9.1
+    * https://yeun.github.io/open-color/
+    * Copyright (c) 2016-present, Yeun Joon Kim
+    * Released under the MIT License
+    * https://opensource.org/licenses/MIT
+    */
+
     /* MAIN COLOR */
     --oc-orange-0: #fff4e6;
     --oc-orange-1: #ffe8cc;
@@ -77,8 +85,7 @@ Ref. https://typescale.com/
     --text-h: var(--oc-gray-8); /* Header text color for contrast */
 
     /* Header, Nav and Footer */
-    --bg-header-footer: var(--oc-gray-2);
-    /* darker #cfcfcf or #d4d4d4 for more lightness */
+    --bg-header-footer: var(--oc-gray-2); /* Nav and footer background color */
     --text-nav-hover-color: var(--oc-gray-0); /* Text color on nav link hover */
     --header-footer-box-shadow: rgba(0, 0, 0, 0.1);
     /* Soft shadow for header and footer elevation */
@@ -222,9 +229,8 @@ header {
     position: fixed; /* Stick to top while scrolling */
     z-index: 1000; /* Make sure it stays on top */
     width: 100%; /* Full width of viewport */
-    background-color: var(
-        --bg-header-footer
-    ); /* Theme-based header background */
+    background-color: var(--bg-header-footer);
+    /* Theme-based header background */
     margin-bottom: 1rem; /* Has no effect with fixed position */
     box-shadow: 0rem 0.5rem 1rem var(--header-footer-box-shadow); /* Soft elevation shadow */
 }
