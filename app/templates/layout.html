@@ -35,9 +35,19 @@
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"
     />
-    <!-- Enter google fonts before css files -->
     <link rel="stylesheet" href="/static/styles.css" />
     <script src="/static/scripts.js" defer></script>
+    <!-- https://ionic.io/ionicons -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+      defer
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+      defer
+    ></script>
     <title>{% block title %}{% endblock %} – WeldDB</title>
   </head>
   <!-- To start with "light" or "dark" theme -->
@@ -101,7 +111,18 @@
           {% endif %}
           <ul>
             <li>
-              <button onclick="toggleTheme()" id="toggleTheme">Dark</button>
+              <a
+                href="javascript:void(0);"
+                onclick="toggleTheme()"
+                id="toggleTheme"
+              >
+                <!-- <img
+                  src="/static/icons/contrast-sharp.svg"
+                  alt="Toggle dark/light theme"
+                  class="icon"
+                /> -->
+                <ion-icon name="contrast-sharp" class="icon"></ion-icon>
+              </a>
             </li>
           </ul>
         </section>

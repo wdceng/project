@@ -35,9 +35,19 @@
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"
     />
-    <!-- Enter google fonts before css files -->
     <link rel="stylesheet" href="/app/static/styles.css" />
     <script src="/app/static/scripts.js" defer></script>
+    <!-- https://ionic.io/ionicons -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+      defer
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+      defer
+    ></script>
     <title>dev_Log In – WeldDB</title>
   </head>
   <!-- To start with "light" or "dark" theme -->
@@ -85,7 +95,6 @@
             <li><a href="#buy">Link 2</a></li>
             <li><a href="#sell">Link 3</a></li>
             <li><a href="#history">Link 4</a></li>
-            <li><a href="#add">Link 5</a></li>
           </ul>
           <div><!-- Allow flex children to split left/right alignment --></div>
           <ul>
@@ -94,7 +103,18 @@
           </ul>
           <ul>
             <li>
-              <button onclick="toggleTheme()" id="toggleTheme">Dark</button>
+              <a
+                href="javascript:void(0);"
+                onclick="toggleTheme()"
+                id="toggleTheme"
+              >
+                <!-- <img
+                  src="/app/static/icons/contrast-sharp.svg"
+                  alt="Toggle dark/light theme"
+                  class="icon"
+                /> -->
+                <ion-icon name="contrast-sharp" class="icon"></ion-icon>
+              </a>
             </li>
           </ul>
         </section>

@@ -49,9 +49,9 @@ function toggleTheme() {
     // Apply the new theme to the body
     document.body.setAttribute("data-theme", nextTheme);
 
-    // Update the toggle button text
-    const buttonText = document.getElementById("toggleTheme");
-    buttonText.innerText = nextTheme === "light" ? "Dark" : "Light";
+    // Update the toggle theme text
+    // const themeText = document.getElementById("toggleTheme");
+    // themeText.innerText = nextTheme === "light" ? "Dark" : "Light";
 
     // Call the function to update all links and forms
     updateLinksFormsWithThemeParam(nextTheme);

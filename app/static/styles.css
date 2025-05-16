@@ -221,6 +221,11 @@ body {
     justify-content: flex-start; /* Align items to the top of the page */
 }
 
+.icon {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
 /* -------------------- */
 /* === HEADER STYLE === */
 /* -------------------- */
@@ -278,23 +283,6 @@ nav li a:active {
     background-color: var(--accent-color); /* Highlight on hover */
     color: var(--text-nav-hover-color); /* Contrast text on hover */
     border-radius: 0.25rem; /* Slightly rounded corners */
-}
-
-nav button {
-    padding: 0.25rem 0.5rem; /* Slightly more horizontal padding */
-    margin: 0 0.5rem; /* Horizontal spacing between buttons */
-    border: none; /* Clean look */
-    border-radius: 0.25rem; /* Slight curve on corners */
-    background-color: var(--accent-color); /* Welding orange */
-    color: #fff; /* Default text color */
-    font-size: 0.9rem; /* Slightly smaller text */
-    font-weight: 500; /* Medium weight */
-    cursor: pointer; /* Show pointer on hover */
-}
-
-nav button:hover {
-    background-color: var(--text-color); /* Invert for contrast */
-    color: var(--text-nav-hover-color); /* Light text on dark bg */
 }
 
 /* ------------------ */
