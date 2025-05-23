@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Home Page
+{% endblock %}
+
+{% block main %}
+  <main>
+    <section>
+      <h3>Table</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Symbol</th>
+            <th>Name</th>
+            <th>Shares</th>
+            <th>Current price</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- TODO: Loop through the database entries to display them in this table -->
+          {# {% for weld in welds %} #}
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          {#  {% endfor %} #}
+        </tbody>
+      </table>
+    </section>
+  </main>
+{% endblock %}

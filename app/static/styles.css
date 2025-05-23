@@ -39,9 +39,6 @@ Ref. https://typescale.com/
 /* ---------------------- */
 
 :root {
-    /* Layout */
-    --max-width: 85rem; /* Limit layout width */
-
     /* 
     * Ref. for color system:
     * Open Color v1.9.1
@@ -83,6 +80,8 @@ Ref. https://typescale.com/
     --bg-color: var(--oc-gray-0); /* Page background color */
     --text-color: var(--oc-gray-9); /* Default text color */
     --text-h: var(--oc-gray-8); /* Header text color for contrast */
+    --text-shadow: rgba(0, 0, 0, 0.1);
+    /* Subtle soft shadow for depth using theme color */
 
     /* Header, Nav and Footer */
     --bg-header-footer: var(--oc-gray-2); /* Nav and footer background color */
@@ -107,6 +106,20 @@ Ref. https://typescale.com/
     --table-stripe: var(--oc-gray-1); /* Alternate row background for tables */
     --border-color: var(--oc-gray-4);
     /* Border color for elements like tables, cards */
+
+    /* Open colors for Flask flash function */
+    /* Red for errors */
+    --flash-error-bg: #fff5f5;
+    --flash-error-text: #fa5252;
+    /* Green for success */
+    --flash-success-bg: #e6fcf5;
+    --flash-success-text: #40c057;
+    /* Blue for info */
+    --flash-info-bg: #e7f5ff;
+    --flash-info-text: #228be6;
+    /* Gray for neutral */
+    --flash-neutral-bg: #f8f9fa;
+    --flash-neutral-text: #495057;
 }
 
 /* === Dark Theme Variables === */
@@ -120,6 +133,8 @@ body[data-theme="dark"] {
     --bg-color: var(--oc-gray-9); /* Dark background for the page */
     --text-color: var(--oc-gray-0); /* Light text for contrast */
     --text-h: var(--oc-gray-1); /* Header text color for contrast */
+    --text-shadow: rgba(0, 0, 0, 0.1);
+    /* Subtle soft shadow for depth using theme color */
 
     /* Header, Nav and Footer */
     --bg-header-footer: var(--oc-gray-8); /* consistent with dark code stripe */
@@ -144,6 +159,20 @@ body[data-theme="dark"] {
     /* Table */
     --table-stripe: var(--oc-gray-8); /* Subtle row striping for tables */
     --border-color: var(--oc-gray-6); /* Darker borders for subtle contrast */
+
+    /* Open colors for Flask flash function */
+    /* Red for errors */
+    --flash-error-bg: #2c0b0e;
+    --flash-error-text: #ff6b6b;
+    /* Green for success */
+    --flash-success-bg: #0a3d2c;
+    --flash-success-text: #69db7c;
+    /* Blue for info */
+    --flash-info-bg: #10243e;
+    --flash-info-text: #4dabf7;
+    /* Gray for neutral */
+    --flash-neutral-bg: #212529;
+    --flash-neutral-text: #dee2e6;
 }
 
 /* ---------------------------------- */
@@ -193,6 +222,7 @@ nav li,
 nav li a,
 main,
 main > section,
+.flash-message,
 form,
 footer,
 footer > section {
@@ -242,12 +272,16 @@ header {
     background-color: var(--bg-header-footer);
     /* Theme-based header background */
     margin-bottom: 1rem; /* Has no effect with fixed position */
-    box-shadow: 0rem 0.5rem 1rem var(--header-footer-box-shadow); /* Soft elevation shadow */
+    box-shadow: 0 0.5rem 1rem 0 var(--header-footer-box-shadow); /* Soft elevation shadow */
 }
 
 /* ------------------------ */
 /* === NAVIGATION STYLE === */
 /* ------------------------ */
+
+:root {
+    --max-width: 85rem; /* Limit layout width */
+}
 
 nav,
 nav > section {
@@ -273,8 +307,9 @@ nav li a:visited {
     color: var(--text-color); /* Default link color */
     text-decoration: none; /* Remove underline */
     text-transform: uppercase; /* Make text all uppercase letters */
-    font-weight: 600; /* Medium weight for clarity */
+    text-shadow: 0.0625rem 0.0625rem 0.125rem var(--text-shadow); /* Subtle soft shadow for depth using theme color */
     font-size: 0.9rem; /* Slightly smaller than base font */
+    font-weight: 600; /* Medium weight for clarity */
     white-space: nowrap; /* Prevent text wrap */
     height: 2.5rem; /* Set fixed element height */
     padding: 0.5rem 0.75rem; /* Clickable area padding */
@@ -298,7 +333,7 @@ main {
     width: 100%; /* Allow full width up to max */
     max-width: var(--max-width);
     /* Limit width for layout consistency */
-    margin: 3.5rem 0 3rem 0; /* Top, right, bottom, left spacing */
+    margin: 4.5rem 0 3rem 0; /* Top, right, bottom, left spacing */
     padding: 0 1rem; /* Horizontal padding (left and right only) */
 
     /* === Flexbox Items (child of body) === */
@@ -310,6 +345,8 @@ main {
 }
 
 main > section {
+    width: 100%; /* Allow full width up to max */
+
     /* === Flexbox Items (child of body) === */
     flex-grow: 1; /* Let main fill remaining space */
 
@@ -324,18 +361,80 @@ main > section {
     justify-content: center; /* Center children horizontally */
 }
 
-main h3 {
-    margin-bottom: 0.5rem;
-    color: var(--text-h);
-    font-size: 1.5rem;
+.left {
+    /* === Flexbox Container === */
+    align-items: flex-start; /* Center children horizontally */
+}
+
+/* --- Flash message base --- */
+:root {
+    --flash-border-radius: 0.0625rem; /* Flask flash border radius*/
+}
+
+.flash-message {
+    width: 100%; /* Allow full width up to max */
+    height: 3rem;
+    margin-bottom: 1rem; /* Add vertical whitespace between sections */
+
     font-weight: 600;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition:
+        background 0.2s,
+        color 0.2s;
+}
+
+/* --- Error / warning (400, etc) --- */
+.flash-error {
+    background: var(--flash-error-bg);
+    color: var(--flash-error-text);
+    border: var(--flash-border-radius) solid var(--flash-error-text);
+}
+
+/* --- Success (logged in, etc) --- */
+.flash-success {
+    background: var(--flash-success-bg);
+    color: var(--flash-success-text);
+    border: var(--flash-border-radius) solid var(--flash-success-text);
+}
+
+/* --- Info --- */
+.flash-info {
+    background: var(--flash-info-bg);
+    color: var(--flash-info-text);
+    border: var(--flash-border-radius) solid var(--flash-info-text);
+}
+
+/* --- Neutral / default --- */
+.flash-neutral {
+    background: var(--flash-neutral-bg);
+    color: var(--flash-neutral-text);
+    border: var(--flash-border-radius) solid var(--flash-neutral-text);
+}
+
+main h3 {
+    margin-bottom: 0.5rem; /* Space below heading */
+    color: var(--text-h); /* Themed heading color */
+    font-size: 1.5rem; /* Medium-large heading size */
+    font-weight: 600; /* Semi-bold for emphasis */
+    text-shadow: 0.0625rem 0.0625rem 0.125rem var(--text-shadow); /* Subtle soft shadow for depth using theme color */
 }
 
 main form {
     /* === Flexbox Container === */
     flex-direction: column; /* Stack children vertically */
     justify-content: flex-start; /* Align items below header */
-    gap: 1rem;
+    gap: 1rem; /* Space between form fields for better readability */
+}
+
+table,
+th,
+td {
+    border: var(--flash-border-radius) solid #228be6;
+}
+
+tr {
+    border: var(--flash-border-radius) solid red;
 }
 
 /* -------------------- */
@@ -357,7 +456,7 @@ main textarea {
     box-sizing: border-box; /* Include padding/border in element size */
     transition:
         border-color 0.3s,
-        box-shadow 0.3s; /* Smooth focus transitions */
+        /* Smooth border color on focus/hover */ box-shadow 0.3s; /* Smooth box-shadow on focus/hover */
 }
 
 main input:focus,
@@ -409,7 +508,7 @@ button {
     font-weight: 600; /* Make text semi-bold for emphasis */
     border-radius: 0.5rem; /* Apply rounded corners for modern look */
     cursor: pointer; /* Show pointer cursor on hover */
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2); /* Add subtle depth shadow */
+    box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.2); /* Add subtle depth shadow */
     width: auto; /* Let button width adjust to its content */
     max-width: 100%; /* Prevent button from overflowing its container */
     box-sizing: border-box; /* Include padding and border in total size */
@@ -420,7 +519,7 @@ button:hover {
     /* Set button background using theme color */
     color: var(--button-text-hover);
     /* Set button text color using theme color */
-    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3); /* Stronger shadow */
+    box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.3); /* Stronger shadow */
     transform: translateY(-0.125rem); /* Tiny lift effect */
     transition:
         background-color 0.3s,
@@ -451,20 +550,20 @@ footer {
     ); /* Match header or use subtle tone */
     color: var(--text-color); /* Use theme text color */
     font-size: 0.625rem; /* Readable but not overpowering */
-    box-shadow: 0rem -0.5rem 1rem var(--header-footer-box-shadow); /* Soft elevation shadow */
+    box-shadow: 0rem -0.5rem 1rem 0 var(--header-footer-box-shadow); /* Soft elevation shadow */
 }
 
 footer > section {
     width: 100%; /* Allow full width up to max */
     max-width: var(--max-width); /* Limit width for layout consistency */
-    height: 100%;
+    height: 100%; /* Stretch to fill parent height */
     gap: 1rem; /* Space between child elements */
 }
 
 footer h4 {
-    font-size: 0.625rem;
-    font-weight: 400;
-    color: var(--text-h);
+    font-size: 0.625rem; /* Small, compact heading text */
+    font-weight: 400; /* Regular weight for subtle emphasis */
+    color: var(--text-h); /* Use themed header text color */
 }
 
 /* --------------------- */

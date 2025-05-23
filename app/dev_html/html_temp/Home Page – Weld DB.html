@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<!-- saved from url=(0029)http://127.0.0.1:5000/?t=dark -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <!-- https://favicon.io -->
+    <link rel="icon" href="http://127.0.0.1:5000/static/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="http://127.0.0.1:5000/static/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="http://127.0.0.1:5000/static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="http://127.0.0.1:5000/static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="http://127.0.0.1:5000/static/favicon/site.webmanifest">
+    <!-- Enter google fonts before css files -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="./Home Page – Weld DB_files/css2" rel="stylesheet">
+    <link rel="stylesheet" href="./Home Page – Weld DB_files/styles.css">
+    <script src="./Home Page – Weld DB_files/scripts.js" defer=""></script>
+    <title>
+  Home Page
+ – Weld DB</title>
+  </head>
+  <!-- To start with "light" or "dark" theme -->
+  <body data-theme="dark">
+    <script>
+      // === Apply initial theme based on URL param or system preference ===
+      function getInitialThemeAndUpdateUrl() {
+        // Try reading from URL ?t=...
+        const searchParams = new URLSearchParams(window.location.search);
+        let theme = searchParams.get("t");
+
+        // If not found, use system preference
+        if (!theme) {
+          const prefersDark = window.matchMedia(
+            "(prefers-color-scheme: dark)"
+          ).matches;
+          theme = prefersDark ? "dark" : "light";
+
+          // Update the URL to include ?t=... without reloading the page
+          const newParams = new URLSearchParams(window.location.search);
+          newParams.set("t", theme);
+          const newUrl =
+            window.location.pathname +
+            "?" +
+            newParams.toString() +
+            window.location.hash; // Preserve the hash if it exists
+          // Update the URL in the address bar without reloading the page
+          window.history.replaceState({}, "", newUrl);
+        }
+
+        return theme;
+      }
+
+      // Apply the detected theme
+      document.body.setAttribute("data-theme", getInitialThemeAndUpdateUrl());
+    </script>
+    <header>
+      <nav>
+        <section>
+          <h2>
+            <a href="http://127.0.0.1:5000/?t=dark">Weld DB</a>
+          </h2>
+          
+            <ul>
+              <li><a href="http://127.0.0.1:5000/link1#">Link 1</a></li>
+            </ul>
+            <div>
+              <!-- Allow flex children to split left/right alignment -->
+            </div>
+            <ul>
+              <li><a href="http://127.0.0.1:5000/logout?t=dark">Log Out</a></li>
+            </ul>
+          
+          <ul>
+            <li>
+              <a href="javascript:void(0);" onclick="toggleTheme()" id="toggleTheme">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                  <!-- Ref. Google fonts: https://rb.gy/fc18sn -->
+                  <path d="M480.07-100q-78.84 0-148.21-29.92t-120.68-81.21q-51.31-51.29-81.25-120.63Q100-401.1 100-479.93q0-78.84 29.92-148.21t81.21-120.68q51.29-51.31 120.63-81.25Q401.1-860 479.93-860q78.84 0 148.21 29.92t120.68 81.21q51.31 51.29 81.25 120.63Q860-558.9 860-480.07q0 78.84-29.92 148.21t-81.21 120.68q-51.29 51.31-120.63 81.25Q558.9-100 480.07-100ZM510-161.85q121.31-11.53 205.65-101.42Q800-353.15 800-480t-83.96-216.35q-83.96-89.5-206.04-101.8v636.3Z"></path>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </section>
+      </nav>
+    </header>
+    
+  <main>
+    <h2>Table</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Symbol</th>
+          <th>Name</th>
+          <th>Shares</th>
+          <th>Current price</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- TODO: Loop through the database entries to display them in this table -->
+        
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </main>
+
+    <footer>
+      <section>
+        <h4>© <span id="footerYear">2025</span> Welding Book/Log Database</h4>
+        <!-- https://validator.w3.org/ -->
+        <form action="http://127.0.0.1:5000/check?t=dark" enctype="multipart/form-data" method="post" target="_blank">
+          <input name="doctype" type="hidden" value="HTML5">
+          <input name="fragment" type="hidden">
+          <input alt="Validate" src="./Home Page – Weld DB_files/I_heart_validator.png" type="image">
+        </form>
+      </section>
+    </footer>
+  
+</body></html>

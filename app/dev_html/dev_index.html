@@ -4,25 +4,25 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <!-- https://favicon.io -->
-    <link rel="icon" href="/static/favicon/favicon.ico" />
+    <link rel="icon" href="/app/static/favicon/favicon.ico" />
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="/static/favicon/apple-touch-icon.png"
+      href="/app/static/favicon/apple-touch-icon.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="/static/favicon/favicon-32x32.png"
+      href="/app/static/favicon/favicon-32x32.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="/static/favicon/favicon-16x16.png"
+      href="/app/static/favicon/favicon-16x16.png"
     />
-    <link rel="manifest" href="/static/favicon/site.webmanifest" />
+    <link rel="manifest" href="/app/static/favicon/site.webmanifest" />
     <!-- Enter google fonts before css files -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -30,12 +30,12 @@
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/static/styles.css" />
-    <script src="/static/scripts.js" defer></script>
-    <title>{% block title %}{% endblock %} – Weld DB</title>
+    <link rel="stylesheet" href="/app/static/styles.css" />
+    <script src="/app/static/scripts.js" defer></script>
+    <title>dev_Index In – WeldDB</title>
   </head>
   <!-- To start with "light" or "dark" theme -->
-  <body data-theme="{{ theme }}">
+  <body data-theme="light">
     <script>
       // === Apply initial theme based on URL param or system preference ===
       function getInitialThemeAndUpdateUrl() {
@@ -72,27 +72,19 @@
       <nav>
         <section>
           <h2>
-            <a href="/">Weld DB</a>
+            <a href="#">Weld DB</a>
           </h2>
-          {% if session["user_id"] %}
-            <ul>
-              <li><a href="/welds">Welds</a></li>
-            </ul>
-            <div>
-              <!-- Allow flex children to split left/right alignment -->
-            </div>
-            <ul>
-              <li><a href="/logout">Log Out</a></li>
-            </ul>
-          {% else %}
-            <div>
-              <!-- Allow flex children to split left/right alignment -->
-            </div>
-            <ul>
-              <li><a href="/register">Register</a></li>
-              <li><a href="/login">Log In</a></li>
-            </ul>
-          {% endif %}
+          <ul>
+            <li><a href="#quote">Link 1</a></li>
+            <li><a href="#buy">Link 2</a></li>
+            <li><a href="#sell">Link 3</a></li>
+            <li><a href="#history">Link 4</a></li>
+          </ul>
+          <div><!-- Allow flex children to split left/right alignment --></div>
+          <ul>
+            <li><a href="#register">Register</a></li>
+            <li><a href="#login">Log In</a></li>
+          </ul>
           <ul>
             <li>
               <a
@@ -115,7 +107,31 @@
         </section>
       </nav>
     </header>
-    {% block main %}{% endblock %}
+    <main>
+      <section class="left">
+        <h2>Welding Log</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Symbol</th>
+              <th>Name</th>
+              <th>Shares</th>
+              <th>Current price</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>a</td>
+              <td>b</td>
+              <td>c</td>
+              <td>e</td>
+              <td>f</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
     <footer>
       <section>
         <h4>&copy; <span id="footerYear"></span> Welding Book/Log Database</h4>
@@ -130,7 +146,7 @@
           <input name="fragment" type="hidden" />
           <input
             alt="Validate"
-            src="/static/I_heart_validator.png"
+            src="/app/static/I_heart_validator.png"
             type="image"
           />
         </form>

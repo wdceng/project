@@ -31,9 +31,9 @@ function updateLinksFormsWithThemeParam(theme) {
     // Update all <form> actions with theme param
     const forms = document.querySelectorAll("form[action]");
     forms.forEach((form) => {
-        const url = new URL(form.action, window.location.origin); // Parse full URL from href
+        const url = new URL(form.action, window.location.origin); // Parse full URL from action
         url.searchParams.set("t", theme); // Add or update the 't' query param
-        form.action = url.pathname + url.search; // Write updated path and query back to href
+        form.action = url.pathname + url.search; // Write updated path and query back to action
     });
 }
 

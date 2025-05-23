@@ -1,9 +1,9 @@
 from cs50 import SQL
-from flask import Flask, flash, redirect, render_template, request, session, Response
+from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from helpers import login_required
+from helpers import login_required, redirect_with_theme
 
 
 # Configure application
@@ -39,20 +39,117 @@ def inject_theme():
     return dict(theme=theme)
 
 
-# Home Page
-@app.route("/")
-@login_required
-def index():
-    return '<h1 style="margin: 0; height: 100vh; display: flex; justify-content: center; align-items: center;">INDEX</h1>'
+# Register user
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    """Register user"""
+    # User reached route via POST (as by submitting a form via POST)
+    if request.method == "POST":
+        # Get name and password from the form
+        username = request.form.get("username").strip()
+        password = request.form.get("password").strip()
+        confirmation = request.form.get("confirmation").strip()
+
+        # Ensure username was submitted
+        if not username:
+            flash("Username is required. (Error 400)", "flash-error")
+            return render_template("register.html")
+
+        # Ensure password was submitted
+        elif not password:
+            flash("Password is required. (Error 400)", "flash-error")
+            return render_template("register.html")
+
+        # Ensure confirmation was submitted
+        elif not confirmation:
+            flash("Password confirmation is required. (Error 400)", "flash-error")
+            return render_template("register.html")
+
+        # Ensure password matches confirmation
+        elif password != confirmation:
+            flash("Password and confirmation do not match. (Error 400)", "flash-error")
+            return render_template("register.html")
+
+        try:
+            # Attempt to insert the new user
+            db.execute(
+                "INSERT INTO users (username, hash) VALUES (?, ?)",
+                username,
+                generate_password_hash(password),
+            )
+
+        except ValueError:
+            # Handle the case where the username already exists
+            flash(
+                "Username already taken. Please choose a different one. (Error 400)",
+                "flash-error",
+            )
+            return render_template("register.html")
+
+        flash("Registration complete. You can now log in.", "flash-success")
+        return render_template("login.html")
+    else:
+        return render_template("register.html")
 
 
 # Login
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    return render_template("login.html")
+    """Log user in"""
+
+    # Forget any user_id
+    session.clear()
+
+    # User reached route via POST (as by submitting a form via POST)
+    if request.method == "POST":
+        # Get name and password from the form
+        username = request.form.get("username").strip()
+        password = request.form.get("password").strip()
+
+        # Ensure username was submitted
+        if not username:
+            flash("Username is required. (Error 403)", "flash-error")
+            return render_template("register.html")
+
+        # Ensure password was submitted
+        elif not password:
+            flash("Password is required. (Error 403)", "flash-error")
+            return render_template("register.html")
+
+        # Query database for username
+        rows = db.execute("SELECT * FROM users WHERE username = ?", username)
+
+        # Ensure username exists and password is correct
+        if len(rows) != 1 or not check_password_hash(
+            rows[0]["hash"], request.form.get("password")
+        ):
+            flash("Invalid username or password. (Error 403)", "flash-error")
+            return render_template("login.html")
+
+        # Remember which user has logged in
+        session["user_id"] = rows[0]["id"]
+
+        # Redirect user to home page
+        return redirect_with_theme("index")
+
+    # User reached route via GET (as by clicking a link or via redirect)
+    else:
+        return render_template("login.html")
 
 
-# Register user
-@app.route("/register", methods=["GET", "POST"])
-def register():
-    return render_template("register.html")
+@app.route("/logout")
+def logout():
+    """Log user out"""
+
+    # Forget any user_id
+    session.clear()
+
+    # Redirect user to login form
+    return redirect_with_theme("login")
+
+
+# Home Page
+@app.route("/")
+@login_required
+def index():
+    return render_template("index.html")
