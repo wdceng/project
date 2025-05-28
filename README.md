@@ -2,11 +2,11 @@
 
 #### Video Demo: <URL HERE>
 
-Project Title: **Welding Book/Log Database**
-Name: **Davor Šercer**
-GitHub Username: **wdceng**
-edX Usernames: **davor_shertser**
-City and Country: **Zagreb, Croatia**
+Project Title: **Welding Book/Log Database**\
+Name: **Davor Šercer (pr. Shertser)**\
+GitHub Username: **wdceng**\
+edX Usernames: **davor_shertser**\
+City and Country: **Zagreb, Croatia**\
 Date of Video Recording: **May 25, 2025**
 
 #### Description:
