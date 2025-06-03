@@ -39,6 +39,20 @@ def inject_theme():
     return dict(theme=theme)
 
 
+# Home Page
+@app.route("/")
+@login_required
+def index():
+    return render_template("index.html")
+
+
+# Upload Weld Data
+@app.route("/upload_weld_data", methods=["GET", "POST"])
+@login_required
+def welds():
+    return render_template("upload_weld_data.html")
+
+
 # Register user
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -146,10 +160,3 @@ def logout():
 
     # Redirect user to login form
     return redirect_with_theme("login")
-
-
-# Home Page
-@app.route("/")
-@login_required
-def index():
-    return render_template("index.html")

@@ -224,6 +224,7 @@ main,
 main > section,
 .flash-message,
 form,
+main form > div,
 footer,
 footer > section {
     /* === Flexbox === */
@@ -420,12 +421,9 @@ main h3 {
     text-shadow: 0.0625rem 0.0625rem 0.125rem var(--text-shadow); /* Subtle soft shadow for depth using theme color */
 }
 
-main form {
-    /* === Flexbox Container === */
-    flex-direction: column; /* Stack children vertically */
-    justify-content: flex-start; /* Align items below header */
-    gap: 1rem; /* Space between form fields for better readability */
-}
+/* ------------- */
+/* === TABLE === */
+/* ------------- */
 
 table,
 th,
@@ -442,6 +440,21 @@ tr {
 /* -------------------- */
 
 /* === Form Input Styles === */
+main form {
+    /* === Flexbox Container === */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: flex-start; /* Align items below header */
+    gap: 1rem; /* Space between form fields for better readability */
+}
+
+main .data_uploads {
+    width: 25rem !important;
+}
+
+main form > div {
+    width: 100%;
+}
+
 main input,
 main select,
 main textarea {

@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Upload Weld Data
+{% endblock %}
+
+{% block main %}
+  <main>
+    <!-- <section> -->
+    <section>
+      {% include "flash.html" %}
+      <h3>Upload Weld Data</h3>
+      <form action="/upload_weld_data" method="post" class="data_uploads">
+        <div>
+          <input
+            type="text"
+            name="drawing_no"
+            placeholder="Drawing No."
+            autofocus
+          />
+        </div>
+        <div>
+          <input type="text" name="revision" placeholder="Revision" />
+        </div>
+        <div>
+          <input type="text" name="spool_no" placeholder="Spool No." />
+        </div>
+        <div>
+          <input type="text" name="weld_no" placeholder="Weld No." />
+        </div>
+        <div>
+          <input type="text" name="location" placeholder="Location" />
+        </div>
+        <div>
+          <input type="text" name="weld_type" placeholder="Weld Type" />
+        </div>
+        <div>
+          <input type="text" name="size" placeholder="Size" />
+        </div>
+        <div>
+          <input type="text" name="schedule" placeholder="Schedule" />
+        </div>
+        <div>
+          <input
+            type="text"
+            name="fabrication_no"
+            placeholder="Fabrication No"
+          />
+        </div>
+        <div>
+          <input type="text" name="repair_no" placeholder="Repair No" />
+        </div>
+        <div>
+          <input type="text" name="cut_no" placeholder="Cut No" />
+        </div>
+        <button type="submit">Upload</button>
+      </form>
+    </section>
+  </main>
+{% endblock %}
