@@ -7,7 +7,7 @@ Name: **Davor Šercer (pr. Shertser)**\
 GitHub Username: **wdceng**\
 edX Usernames: **davor_shertser**\
 City and Country: **Zagreb, Croatia**\
-Date of Video Recording: **May 25, 2025**
+Date of Video Recording: **June 5, 2025**
 
 #### Description:
 
@@ -45,7 +45,7 @@ Colors like orange, yellow and reddish tones are often associated with welding, 
 
 The project files include all source code, templates, and assets required to run the application. Key components:
 
-##### Backend Code
+#### Backend Code
 
 Handles routing, logic, and database operations (e.g., written in Python/Flask).
 
@@ -53,7 +53,7 @@ Handles routing, logic, and database operations (e.g., written in Python/Flask).
 
 2. 2 **`helpers.py`** file contains utility functions that support the main application logic. These functions help keep the app.py clean and organized by separating reusable code
 
-##### Frontend Templates
+#### Frontend Templates
 
 HTML files structured for rendering views with dynamic data.
 
@@ -65,26 +65,36 @@ HTML files structured for rendering views with dynamic data.
 
 6. 4 **`index.html`** file serves as the homepage or main dashboard of your application. It displays a list of recorded welds retrieved from the database and allows users to view the data in a structured format
 
-7. 5 **`flash.html`** file is a partial template included via `{% include "flash.html" %}`. It is responsible for rendering flash messages—temporary notifications used to inform the user about events such as errors, success, or info.
+7. 5 **`upload_weld_data.index`** file provides the user interface for uploading new weld data to the application. This template contains a form where users can input details for a weld record, such as drawing number, revision, spool number, weld number, welder information, inspection results, and more.
 
-##### Static Assets
+8. 6 **`flash.html`** file is a partial template included via `{% include "flash.html" %}`. It is responsible for rendering flash messages—temporary notifications used to inform the user about events such as errors, success, or info.
+
+#### Static Assets
 
 CSS, JavaScript, and image files for styling and interactivity.
 
-8. 1 **`favicon`** file is the small icon displayed in the browser tab, bookmarks, and address bar. It helps users visually identify web app and enhances the branding of application.
+9. 1 **`favicon`** file is the small icon displayed in the browser tab, bookmarks, and address bar. It helps users visually identify web app and enhances the branding of application.
 
-9. 2 **`scripts.js`** file contains JavaScript code that adds interactivity and behavior to web application. It is linked in layout.html and enhances user experience by handling client-side logic. One key function it handles is toggling between light and dark themes based on user interaction.
+10. 2 **`scripts.js`** file contains JavaScript code that adds interactivity and behavior to web application. It is linked in layout.html and enhances user experience by handling client-side logic. One key function it handles is toggling between light and dark themes based on user interaction.
 
-10. 3 **`style.css`** file contains the core styling rules for entire web application. It defines how elements look and behave visually, ensuring a consistent and responsive user interface.
+11. 3 **`style.css`** file contains the core styling rules for entire web application. It defines how elements look and behave visually, ensuring a consistent and responsive user interface.
 
-##### Configuration Files
+#### Configuration Files
 
 requirements.txt, and others for environment setup and dependencies.
 
-11. 1 **requirements.txt** file lists all the Python packages Flask application needs to run. It is used to install dependencies quickly and consistently, especially in virtual environments or Docker containers which I use for this project.
+12. 1 **requirements.txt** file lists all the Python packages Flask application needs to run. It is used to install dependencies quickly and consistently, especially in virtual environments or Docker containers which I use for this project.
 
-##### Database Schema
+#### Database Schema
 
 SQL scripts or migrations to set up and manage the database structure.
 
-12. 1 **weld_db.db** file is a SQLite database that stores all the persistent data for Welding Book/Log application. Such as `users` and `weld_records` table.
+13. 1 **weld_db.db** file is a SQLite database that stores all the persistent data for Welding Book/Log application. Such as `users` and `welds` table.
+
+## Academic honesty and using ChatGPT
+
+This web application was entirely built by me, applying knowledge gained from CS50x and the additional online resources mentioned above. ChatGPT served as a coding assistant, providing advice and comments, troubleshooting help, and explanations of programming concepts; however, all design, code, and final implementation decisions are my own.
+
+##### Note on language and writing:
+
+As English is not my first language, I used ChatGPT to check my writing for typos and improve the wording, while ensuring that it did not add any content beyond what I originally wrote.

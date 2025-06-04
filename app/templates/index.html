@@ -7,28 +7,53 @@
 {% block main %}
   <main>
     <section>
-      <h3>Table</h3>
+      <h3>Welds Table</h3>
       <table>
         <thead>
           <tr>
-            <th>Symbol</th>
-            <th>Name</th>
-            <th>Shares</th>
-            <th>Current price</th>
-            <th>Total</th>
+            <th>Drawing No</th>
+            <th>Revision</th>
+            <th>Spool No</th>
+            <th>Weld No</th>
+            <th>Location</th>
+            <th>Weld Type</th>
+            <th>Size</th>
+            <th>Schedule</th>
+            <th>Fabrication No</th>
+            <th>Root Welders</th>
+            <th>Root Process</th>
+            <th>Balance Welders</th>
+            <th>Fabrication Date</th>
+            <th>VT</th>
+            <th>PT</th>
+            <th>MT</th>
+            <th>RT</th>
+            <th>UT</th>
           </tr>
         </thead>
         <tbody>
-          <!-- TODO: Loop through the database entries to display them in this table -->
-          {# {% for weld in welds %} #}
-          <tr>
-            <td>a</td>
-            <td>b</td>
-            <td>c</td>
-            <td>d</td>
-            <td>e</td>
-          </tr>
-          {#  {% endfor %} #}
+          {% for weld in welds %}
+            <tr>
+              <td>{{ weld.drawing_no }}</td>
+              <td>{{ weld.revision }}</td>
+              <td>{{ weld.spool_no }}</td>
+              <td>{{ weld.weld_no }}</td>
+              <td>{{ weld.location }}</td>
+              <td>{{ weld.weld_type }}</td>
+              <td>{{ weld.size }}</td>
+              <td>{{ weld.schedule }}</td>
+              <td>{{ weld.fabrication_no }}</td>
+              <td>{{ weld.root_welders }}</td>
+              <td>{{ weld.root_process }}</td>
+              <td>{{ weld.balance_welders }}</td>
+              <td>{{ weld.fabrication_date }}</td>
+              <td>{{ weld.vt }}</td>
+              <td>{{ weld.pt }}</td>
+              <td>{{ weld.mt }}</td>
+              <td>{{ weld.rt }}</td>
+              <td>{{ weld.ut }}</td>
+            </tr>
+          {% endfor %}
         </tbody>
       </table>
     </section>

@@ -106,6 +106,9 @@ Ref. https://typescale.com/
     --table-stripe: var(--oc-gray-1); /* Alternate row background for tables */
     --border-color: var(--oc-gray-4);
     /* Border color for elements like tables, cards */
+    --table-header-bg: var(--oc-gray-1);
+    --table-header-text: var(--oc-orange-8);
+    --table-row-hover: var(--oc-orange-0);
 
     /* Open colors for Flask flash function */
     /* Red for errors */
@@ -159,6 +162,9 @@ body[data-theme="dark"] {
     /* Table */
     --table-stripe: var(--oc-gray-8); /* Subtle row striping for tables */
     --border-color: var(--oc-gray-6); /* Darker borders for subtle contrast */
+    --table-header-bg: var(--oc-gray-8);
+    --table-header-text: var(--oc-orange-3);
+    --table-row-hover: #47341f; /* Or a dark gold/orange for visibility */
 
     /* Open colors for Flask flash function */
     /* Red for errors */
@@ -425,14 +431,60 @@ main h3 {
 /* === TABLE === */
 /* ------------- */
 
-table,
-th,
-td {
-    border: var(--flash-border-radius) solid #228be6;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-header-footer);
+    border-radius: 0.5rem;
+    overflow: hidden; /* For rounded corners */
+    box-shadow: 0 2px 12px rgba(34, 139, 230, 0.05);
+    margin-bottom: 2rem;
+    font-size: 1rem;
 }
 
-tr {
-    border: var(--flash-border-radius) solid red;
+th,
+td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+    vertical-align: middle;
+}
+
+th {
+    background: var(--table-header-bg);
+    color: var(--table-header-text);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid var(--accent-color);
+    text-shadow: 0 1px 0 var(--bg-color);
+}
+
+tbody tr:nth-child(odd) {
+    background: var(--table-stripe);
+}
+
+tbody tr:nth-child(even) {
+    background: var(--bg-header-footer);
+}
+
+tbody tr:hover {
+    background: var(--table-row-hover);
+    transition: background 0.2s;
+}
+
+tbody td {
+    white-space: nowrap;
+}
+
+td {
+    color: var(--text-color);
+    font-size: 0.98rem;
+}
+
+/* Optional: Make the first column bold */
+td:first-child {
+    font-weight: 600;
+    color: var(--accent-color);
 }
 
 /* -------------------- */

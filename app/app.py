@@ -42,7 +42,8 @@ def inject_theme():
 @app.route("/")
 @login_required
 def index():
-    return render_template("index.html")
+    welds = db.execute("SELECT * FROM welds")
+    return render_template("index.html", welds=welds)
 
 
 # Upload Weld Data
