@@ -459,7 +459,7 @@ main input,
 main select,
 main textarea {
     background-color: var(--input-bg); /* Set background based on theme */
-    color: var(--input-text); /* Set text color inside input */
+    color: var(--input-text) !important; /* Set text color inside input */
     border: 0.0625rem solid var(--input-border); /* Input border using theme color */
     padding: 0.5rem 0.75rem; /* Space inside input for text */
     font-size: 1rem; /* Standard readable font size */

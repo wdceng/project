@@ -1,5 +1,5 @@
 from cs50 import SQL
-from flask import Flask, flash, redirect, render_template, request, session
+from flask import Flask, flash, redirect, render_template, request, session, url_for
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -13,7 +13,6 @@ app = Flask(__name__)
 db = SQL("sqlite:///weld_db.db")
 
 # Flask Run config for Session from flask_session
-# Dockerfile must contain: RUN chown -R appuser /app/flask_session
 # Configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -50,7 +49,79 @@ def index():
 @app.route("/upload_weld_data", methods=["GET", "POST"])
 @login_required
 def welds():
-    return render_template("upload_weld_data.html")
+    """Register welds"""
+    # List all the field names (must match your form names)
+    fields = [
+        "drawing_no",
+        "revision",
+        "spool_no",
+        "weld_no",
+        "location",
+        "weld_type",
+        "size",
+        "schedule",
+        "fabrication_no",
+        "root_welders",
+        "root_process",
+        "balance_welders",
+        "fabrication_date",
+        "vt",
+        "pt",
+        "mt",
+        "rt",
+        "ut",
+    ]
+    # User reached route via POST (as by submitting a form via POST)
+    if request.method == "POST":
+        # Build a dictionary of field values, stripping whitespace
+        data = {field: (request.form.get(field) or "").strip() for field in fields}
+
+        # Simple validation example (you can expand this!)
+        if not data["drawing_no"] or not data["weld_no"]:
+            flash("Drawing number and weld number are required.", "flash-error")
+            return render_template("upload_weld.html", **data)
+
+        # Prepare values in the same order as fields
+        values = [data[field] for field in fields]
+
+        # Prepare SQL query
+        field_str = ", ".join(fields)
+        placeholders = ", ".join(["?"] * len(fields))
+        sql = f"INSERT INTO welds ({field_str}) VALUES ({placeholders})"
+
+        # Insert into database (replace db.execute with your database logic)
+        try:
+            db.execute(sql, *values)
+            flash("Weld uploaded successfully.", "flash-success")
+            return redirect(url_for("welds"))
+        except Exception as e:
+            flash(f"Database error: {e}", "flash-error")
+            return render_template("upload_weld_data.html", **data)
+
+        """
+        # Get all inputs
+        drawing_no = request.form.get("drawing_no").strip()
+        revision = request.form.get("revision").strip()
+        spool_no = request.form.get("spool_no").strip()
+        weld_no = request.form.get("weld_no").strip()
+        location = request.form.get("location").strip()
+        weld_type = request.form.get("weld_type").strip()
+        size = request.form.get("size").strip()
+        schedule = request.form.get("schedule").strip()
+        fabrication_no = request.form.get("fabrication_no").strip()
+        root_welders = request.form.get("root_welders").strip()
+        root_process = request.form.get("root_process").strip()
+        balance_welders = request.form.get("balance_welders").strip()
+        fabrication_date = request.form.get("fabrication_date").strip()
+        vt = request.form.get("vt").strip()
+        pt = request.form.get("pt").strip()
+        mt = request.form.get("mt").strip()
+        rt = request.form.get("rt").strip()
+        ut = request.form.get("ut").strip()
+        """
+
+    else:
+        return render_template("upload_weld_data.html")
 
 
 # Register user
