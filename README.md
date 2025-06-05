@@ -1,14 +1,5 @@
 # Welding Book/Log DataBase
 
-#### Video Demo: <URL HERE>
-
-Project Title: **Welding Book/Log Database**\
-Name: **Davor Šercer (pr. Shertser)**\
-GitHub Username: **wdceng**\
-edX Usernames: **davor_shertser**\
-City and Country: **Zagreb, Croatia**\
-Date of Video Recording: **June 5, 2025**
-
 #### Description:
 
 WeldDB (Welding Book/Log Database) is a streamlined application designed to efficiently insert and manage weld data in a structured database. It helps welding professionals record, track, and organize weld inspections with ease and accuracy.
@@ -91,9 +82,9 @@ SQL scripts or migrations to set up and manage the database structure.
 
 13. 1 **weld_db.db** file is a SQLite database that stores all the persistent data for Welding Book/Log application. Such as `users` and `welds` table.
 
-## Academic honesty and using ChatGPT
+## Academic Honesty and using ChatGPT
 
-This web application was entirely built by me, applying knowledge gained from CS50x and the additional online resources mentioned above. ChatGPT served as a coding assistant, providing advice and comments, troubleshooting help, and explanations of programming concepts; however, all design, code, and final implementation decisions are my own.
+This web application was entirely built by me, applying knowledge gained from CS50x and the additional online resources mentioned above. The use of AI-based software, including ChatGPT, for this final project has been approved. ChatGPT served as a coding assistant, providing advice, enhance comments, troubleshooting help, and explanations of programming concepts. However, all design, code, and final implementation decisions are my own.
 
 ##### Note on language and writing:
 
